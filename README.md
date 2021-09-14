@@ -1,7 +1,10 @@
 ember-aria
 ==============================================================================
 
-[Short description of the addon.]
+[![CI](https://github.com/CrowdStrike/ember-aria/actions/workflows/ci.yml/badge.svg)](https://github.com/CrowdStrike/ember-aria/actions/workflows/ci.yml)
+[![npm version](https://badge.fury.io/js/ember-aria.svg)](https://www.npmjs.com/package/ember-aria)
+
+ARIA utilities for helping create some of the mare complex ARIA design patterns. Follows https://www.w3.org/TR/wai-aria-practices/
 
 
 Compatibility
