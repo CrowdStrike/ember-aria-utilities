@@ -13,7 +13,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "noEmitOnError": true,
+    "noEmitOnError": false,
     "noEmit": true,
     "inlineSourceMap": true,
     "inlineSources": true,
@@ -39,6 +39,10 @@
       ],
       "ember-aria/test-support/*": [
         "addon-test-support/*"
+      ],
+      "@glimmer/tracking": [
+        "node_modules/ember-cached-decorator-polyfill",
+        "node_modules/@glimmer/tracking/dist/types"
       ],
       "*": [
         "types/*"

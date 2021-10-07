@@ -1,0 +1,73 @@
+<SampleData as |columns rows|>
+  <div {{aria-grid}} role="grid" aria-rowcount="{{this.doubled rows.length}}">
+    <div role="row">
+      <div role="columnheader" tabindex="-1">
+        Expand
+      </div>
+
+      {{#each columns as |column|}}
+        <div role="columnheader" tabindex="-1">
+          {{column}}
+        </div>
+      {{/each}}
+    </div>
+
+    {{#each rows as |row index|}}
+      {{#let (this.guidFor row) as |rowId|}}
+        {{#let (toggle) as |t|}}
+
+          <div role="row" aria-rowindex="{{this.mainRow index}}">
+            <div role="cell" tabindex="-1">
+              <button
+                type="button"
+                aria-expanded="{{t.state}}"
+                aria-controls="row-expand-{{rowId}}"
+                {{on "click" t.toggle}}
+              >
+                Toggle Row
+              </button>
+            </div>
+
+            {{#each row as |datum|}}
+              <div role="cell" tabindex="-1">{{datum}}</div>
+            {{/each}}
+          </div>
+
+          <div
+            data-expanded-row
+            id="row-expand-{{rowId}}"
+            role="row"
+            hidden={{this.not t.state}}
+          >
+            {{#if t.state}}
+              <div role="cell" aria-colspan={{columns.length}}>
+
+                <SampleData @rows={{5}} @columns={{3}} as |columns rows|>
+                  <div {{aria-grid}} role="grid" aria-rowcount="{{rows.length}}">
+                    <div role="row">
+                      {{#each columns as |column|}}
+                        <div role="columnheader" tabindex="-1">
+                          {{column}}
+                        </div>
+                      {{/each}}
+                    </div>
+
+                    {{#each rows as |row|}}
+                      <div role="row">
+                        {{#each row as |datum|}}
+                          <div role="cell" tabindex="-1">{{datum}}</div>
+                        {{/each}}
+                      </div>
+                    {{/each}}
+                  </div>
+                </SampleData>
+
+              </div>
+            {{/if}}
+          </div>
+
+        {{/let}}
+      {{/let}}
+    {{/each}}
+  </div>
+</SampleData>
