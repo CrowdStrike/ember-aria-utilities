@@ -36,6 +36,8 @@ module.exports = function (defaults) {
         components: {
           '{{this.doubled}}': { safeToIgnore: true },
           '{{this.guidFor}}': { safeToIgnore: true },
+          '{{grid}}': { safeToIgnore: true },
+          '{{nested-grid}}': { safeToIgnore: true },
         },
       },
     ],
