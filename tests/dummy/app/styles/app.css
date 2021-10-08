@@ -1,0 +1,53 @@
+body, html {
+  padding: 1rem;
+  margin: 0;
+  font-family: SystemUI, Arial, Helvetica, sans-serif;
+}
+:root {
+  --ember-brand: #E04E39;
+  --ember-black: #212121;
+  --ember-burnt-ember: #9b2918;
+  --ember-gray: #817f7f;
+  --ember-blue: #1e719b;
+  --ember-faint-gray: #efebea;
+  --ember-light-blue: #74b0ce;
+  --ember-linen: #fdf7f6;
+  --ember-yellow: #fbc840;
+  --ember-white: #fdfdfd;
+}
+
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ember-brand);
+  border-radius: 0.125rem;
+}
+
+[role=grid] {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: row;
+
+}
+
+[role=row] {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+}
+
+[role=row][hidden] {
+  display: none;
+}
+
+[role=row]:first-child {
+  font-weight: bold;
+  border-bottom: 1px solid black;
+}
+
+[role=cell], [role=columnheader] {
+  padding: 0.25rem 0.5rem;
+}
+
+[data-expanded-row] {
+  margin: 1rem 1rem 1rem 2rem;
+}

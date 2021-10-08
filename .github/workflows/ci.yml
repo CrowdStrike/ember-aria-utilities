@@ -21,8 +21,8 @@ jobs:
     strategy:
       matrix:
         node:
-          - "12"
           - "14"
+          - "16"
     steps:
       - uses: actions/checkout@v2
       - uses: volta-cli/action@v1
@@ -42,8 +42,8 @@ jobs:
     strategy:
       matrix:
         node:
-          - "12"
           - "14"
+          - "16"
 
     steps:
       - uses: actions/checkout@v2
@@ -67,7 +67,8 @@ jobs:
       fail-fast: true
       matrix:
         ember-try-scenario:
-          - ember-lts-3.24
+          - ember-3.25
+          - ember-lts-3.28
           - ember-release
           - ember-beta
           - ember-canary
