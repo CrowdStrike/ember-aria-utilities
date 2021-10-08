@@ -81,7 +81,10 @@ function setupMutationObserver(grid: HTMLElement) {
 }
 
 function installRowIndices(grid: HTMLElement) {
-  // TODO: how do select rows that are not descendants of another row?
+  // TODO:
+  //  CSS doesn't have a way to select rows that are not descendants of another row.
+  //  For now, we have to use JS to simulate this behavior, but we should go back to CSS
+  //  as soon as we are able.
   let allRows = grid.querySelectorAll('[role="row"]');
   let rows = [...allRows].filter((row) => row.closest('[role="grid"]') === grid);
 
