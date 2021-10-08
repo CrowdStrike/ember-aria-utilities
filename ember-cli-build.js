@@ -17,9 +17,26 @@ module.exports = function (defaults) {
   const { maybeEmbroider } = require('@embroider/test-setup');
 
   return maybeEmbroider(app, {
+    // Embroider does not know how to resolve local helpers
+    // https://github.com/embroider-build/embroider/issues/894
+    staticHelpers: false,
+
     skipBabel: [
       {
         package: 'qunit',
+      },
+    ],
+    packageRules: [
+      {
+        package: 'dummy',
+        helpers: {
+          '{{this.doubled}}': { safeToIgnore: true },
+          '{{this.guidFor}}': { safeToIgnore: true },
+        },
+        components: {
+          '{{this.doubled}}': { safeToIgnore: true },
+          '{{this.guidFor}}': { safeToIgnore: true },
+        },
       },
     ],
   });
