@@ -3,7 +3,11 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { rowAbove, rowBelow, siblingsOf } from 'ember-aria/modifiers/-private/node-selectors';
+import {
+  rowAbove,
+  rowBelow,
+  siblingsOf,
+} from 'ember-aria-utilities/modifiers/-private/node-selectors';
 
 async function renderNestedGrid() {
   await render(hbs`

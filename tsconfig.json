@@ -31,13 +31,13 @@
       "ember-aria": [
         "addon"
       ],
-      "ember-aria/*": [
+      "ember-aria-utilities/*": [
         "addon/*"
       ],
-      "ember-aria/test-support": [
+      "ember-aria-utilities/test-support": [
         "addon-test-support"
       ],
-      "ember-aria/test-support/*": [
+      "ember-aria-utilities/test-support/*": [
         "addon-test-support/*"
       ],
       "@glimmer/tracking": [

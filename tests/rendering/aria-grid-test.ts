@@ -13,8 +13,8 @@ import { hbs } from 'ember-cli-htmlbars';
 import { module, skip, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 
-import { closestRow } from 'ember-aria/modifiers/-private/node-selectors';
-import { ariaGrid } from 'ember-aria/test-support';
+import { closestRow } from 'ember-aria-utilities/modifiers/-private/node-selectors';
+import { ariaGrid } from 'ember-aria-utilities/test-support';
 
 import { Grid, NestedGrid, repeat, withDefault } from '../helpers';
 
