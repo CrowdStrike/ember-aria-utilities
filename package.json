@@ -1,6 +1,6 @@
 {
   "name": "ember-aria-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "ARIA utilities for helping create some of the mare complex ARIA design patterns. Follows https://www.w3.org/TR/wai-aria-practices/",
   "keywords": [
     "ember-addon"
