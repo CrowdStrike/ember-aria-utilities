@@ -1,4 +1,4 @@
-ember-aria
+ember-aria-utilities
 ==============================================================================
 
 [![CI](https://github.com/CrowdStrike/ember-aria/actions/workflows/ci.yml/badge.svg)](https://github.com/CrowdStrike/ember-aria/actions/workflows/ci.yml)
@@ -19,7 +19,7 @@ Installation
 ------------------------------------------------------------------------------
 
 ```
-ember install ember-aria
+ember install ember-aria-utilities
 ```
 
 

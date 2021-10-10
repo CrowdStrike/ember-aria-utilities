@@ -1,1 +1,1 @@
-export { default } from 'ember-aria/modifiers/aria-grid';
+export { default } from 'ember-aria-utilities/modifiers/aria-grid';

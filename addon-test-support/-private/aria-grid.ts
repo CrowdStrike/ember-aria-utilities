@@ -11,7 +11,7 @@ import {
   LEFT,
   RIGHT,
   UP,
-} from 'ember-aria/modifiers/-private/keys';
+} from 'ember-aria-utilities/modifiers/-private/keys';
 
 /**
  *  NOTE: nth-child is 1-indexed
