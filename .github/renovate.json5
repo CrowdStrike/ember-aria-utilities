@@ -9,7 +9,7 @@
   "masterIssue": true,
   // bump for apps
   // update-lockfile for addons/libraries
-  "rangeStrategy": "bump",
+  "rangeStrategy": "update-lockfile",
   // From the docs:
   // https://docs.renovatebot.com/configuration-options/#packagerules
   // Important to know: Renovate will evaluate all packageRules and not stop once it gets a first match.
@@ -93,8 +93,36 @@
       ]
     },
     {
+      // We will handle this ourselves
+      "groupName": "Automated Release Dependencies",
+      "enabled": false,
+      "packagePatterns": [
+        "@semantic-release*",
+        "semantic-release*"
+      ]
+    },
+    {
+      // Max Semver compatibility
+      "packagePatterns": [
+        "@ember/test-waiters"
+      ],
+      "rangeStrategy": "widen"
+    },
+    {
       // changing peerDependencies *at all* is a breaking change
       "matchDepTypes": ["peerDependencies"],
+      "enabled": false
+    },
+    {
+      // ensure maximum compatibility, when possible
+      "matchPaths": ["ember-aria-utilities/package.json"],
+      "matchDepTypes": ["dependencies"],
+      "enabled": false
+    },
+    {
+      // changing engines forces other people to need to upgrade their minimum node
+      // therefor engine changes are breaking changes
+      "depTypeList": ["engines"],
       "enabled": false
     }
   ]
