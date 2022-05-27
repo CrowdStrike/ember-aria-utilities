@@ -1,15 +1,19 @@
 {
   "name": "ember-aria-utilities",
   "version": "1.0.1",
+  "keywords": [
+    "ember-addon",
+    "aria",
+    "aria-grid"
+  ],
   "description": "ARIA utilities for helping create some of the mare complex ARIA design patterns. Follows https://www.w3.org/TR/wai-aria-practices/",
   "repository": "https://github.com/CrowdStrike/ember-aria",
   "license": "MIT",
   "author": "CrowdStrike UX Team",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*"
+    "./*": "./dist/*",
+    "./test-support": "./dist/test-support/index.js"
   },
-  "main": "./addon-main.cjs",
   "typesVersions": {
     ">=4.0.0": {
       "*": [
@@ -24,8 +28,8 @@
     }
   },
   "files": [
-    "dist",
     "addon-main.cjs",
+    "dist",
     "CHANGELOG.md",
     "README.md"
   ],
@@ -44,18 +48,14 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "@ember/test-helpers": "^2.4.0",
     "@embroider/addon-shim": "^1.7.1",
     "@embroider/macros": "^1.7.1",
     "ember-modifier": "^3.2.7"
   },
   "peerDependencies": {
-    "@ember/test-helpers": ">= 2.4.0",
+    "@ember/test-helpers": "^2.4.0",
     "ember-source": ">= 3.24.0"
-  },
-  "peerDependenciesMeta": {
-    "@ember/test-helpers": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@babel/core": "7.18.2",
@@ -98,7 +98,6 @@
     "type": "addon",
     "main": "./addon-main.cjs",
     "app-js": {
-      "./modifiers/-private/node-selectors.js": "./dist/_app_/modifiers/-private/node-selectors.js",
       "./modifiers/aria-grid.js": "./dist/_app_/modifiers/aria-grid.js"
     }
   },
@@ -121,6 +120,5 @@
       "@semantic-release/github",
       "@semantic-release/git"
     ]
-  },
-  "types": "dist"
+  }
 }

@@ -9,6 +9,7 @@ node_modules/
 # misc
 .env*
 .pnp*
+.turbo
 .eslintcache
 yarn-error.log
 

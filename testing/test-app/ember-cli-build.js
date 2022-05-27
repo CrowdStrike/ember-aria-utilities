@@ -21,7 +21,7 @@ module.exports = function (defaults) {
     ],
     packageRules: [
       {
-        package: 'dummy',
+        package: 'test-app',
         helpers: {
           '{{this.doubled}}': { safeToIgnore: true },
           '{{this.guidFor}}': { safeToIgnore: true },

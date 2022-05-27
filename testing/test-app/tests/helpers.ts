@@ -81,7 +81,7 @@ setComponentTemplate(
 
       {{#each (repeat (with-default @rows 2)) as |row|}}
         {{#let (this.rowGuid row) as |rowId|}}
-          {{#let (toggle) as |t|}}
+          {{#let (this.toggle) as |t|}}
             <div role="row">
               <div role="cell" tabindex="-1">
                 <button
