@@ -1,5 +1,6 @@
-import { DEBUG } from '@glimmer/env';
 import { assert } from '@ember/debug';
+
+import { isDevelopingApp, isTesting, macroCondition } from '@embroider/macros';
 
 import { enableNav } from './navigation';
 import {
@@ -43,7 +44,7 @@ export function focus(cell?: Element | null) {
 
   enableNav(grid);
 
-  if (DEBUG) {
+  if (macroCondition(isDevelopingApp() || isTesting())) {
     assert(`cell cannot acquire focus outside of a grid`, grid);
 
     let debugFocusAttr = 'data-debug-has-intended-focus';

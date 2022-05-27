@@ -201,6 +201,7 @@ importers:
       '@babel/core': ^7.0.0
       '@ember/optional-features': ^2.0.0
       '@ember/test-helpers': ^2.4.2
+      '@ember/test-waiters': ^3.0.2
       '@embroider/compat': 1.7.1
       '@embroider/core': 1.7.1
       '@embroider/test-setup': 1.7.1
@@ -241,7 +242,6 @@ importers:
       ember-cli: ^4.4.0
       ember-cli-app-version: ^5.0.0
       ember-cli-babel: ^7.26.6
-      ember-cli-dependency-checker: ^3.2.0
       ember-cli-htmlbars: ^5.7.1
       ember-cli-inject-live-reload: ^2.1.0
       ember-cli-terser: ^4.0.2
@@ -272,8 +272,9 @@ importers:
       typescript: 4.5.2
       webpack: ^5.51.1
     dependencies:
+      '@ember/test-waiters': 3.0.2
       ember-aria-utilities: link:../../ember-aria-utilities
-      ember-resources: 4.8.2_be4dwkyl2w4uzwgkeuo2tmpz34
+      ember-resources: 4.8.2_egz26wxmxahc2ysi5de7kqgox4
       ember-source: 4.4.0_w2i5cy6pptznn7rmavsgpnxasa
     devDependencies:
       '@babel/core': 7.18.2
@@ -318,7 +319,6 @@ importers:
       ember-cli: 4.4.0
       ember-cli-app-version: 5.0.0
       ember-cli-babel: 7.26.11
-      ember-cli-dependency-checker: 3.3.1_ember-cli@4.4.0
       ember-cli-htmlbars: 5.7.2
       ember-cli-inject-live-reload: 2.1.0
       ember-cli-terser: 4.0.2
@@ -2347,7 +2347,6 @@ packages:
       semver: 7.3.7
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /@embroider/addon-dev/1.7.1_rollup@2.75.0:
     resolution: {integrity: sha512-SfpRB6AXa/n3/IhnGGq3OHEsmgx1SaC33clKngx2XA2rnxoiekXVB8gu0DCMGVl8bztMqprA/Uefkg4K2JpErA==}
@@ -8685,6 +8684,29 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.18.3
+      '@embroider/addon-shim': 1.7.1
+      '@embroider/macros': 1.7.1
+      '@glimmer/tracking': 1.1.2
+      ember-source: 4.4.0_w2i5cy6pptznn7rmavsgpnxasa
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /ember-resources/4.8.2_egz26wxmxahc2ysi5de7kqgox4:
+    resolution: {integrity: sha512-Ni4zkadhhPsIAGM974pK7gBaaajeFJmjrigKtPIFSaTdeCuNdDn99Cs0NVCZ22QSmh2L5/4tYQh8/nLHggZlaQ==}
+    peerDependencies:
+      '@ember/test-waiters': ^3.0.0
+      '@glimmer/tracking': ^1.0.0
+      ember-concurrency: ^1.0.0 || ^2.0.0
+      ember-source: '>= 3.25.0'
+    peerDependenciesMeta:
+      '@ember/test-waiters':
+        optional: true
+      ember-concurrency:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.18.3
+      '@ember/test-waiters': 3.0.2
       '@embroider/addon-shim': 1.7.1
       '@embroider/macros': 1.7.1
       '@glimmer/tracking': 1.1.2

@@ -1,17 +1,7 @@
 import { assert } from '@ember/debug';
 import { triggerKeyEvent } from '@ember/test-helpers';
 
-import {
-  DOWN,
-  END,
-  ENTER,
-  ESCAPE,
-  F2,
-  HOME,
-  LEFT,
-  RIGHT,
-  UP,
-} from 'ember-aria-utilities/modifiers/-private/keys';
+import { DOWN, END, ENTER, ESCAPE, F2, HOME, LEFT, RIGHT, UP } from '../../modifiers/-private/keys';
 
 /**
  *  NOTE: nth-child is 1-indexed

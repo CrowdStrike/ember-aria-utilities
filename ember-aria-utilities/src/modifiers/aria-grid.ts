@@ -46,7 +46,8 @@ const gridData = modifier(
       gridElement.removeEventListener('keydown', keyHandler);
       gridElement.removeEventListener('click', clickHandler);
     };
-  }
+  },
+  { eager: false }
 );
 
 export default gridData;

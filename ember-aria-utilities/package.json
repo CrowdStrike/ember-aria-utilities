@@ -1,0 +1,126 @@
+{
+  "name": "ember-aria-utilities",
+  "version": "1.0.1",
+  "description": "ARIA utilities for helping create some of the mare complex ARIA design patterns. Follows https://www.w3.org/TR/wai-aria-practices/",
+  "repository": "https://github.com/CrowdStrike/ember-aria",
+  "license": "MIT",
+  "author": "CrowdStrike UX Team",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*"
+  },
+  "main": "./addon-main.cjs",
+  "typesVersions": {
+    ">=4.0.0": {
+      "*": [
+        "dist/*"
+      ],
+      "modifiers/-private/node-selectors": [
+        "dist/modifiers/-private/node-selectors.d.ts"
+      ],
+      "test-support": [
+        "dist/test-support/index.d.ts"
+      ]
+    }
+  },
+  "files": [
+    "dist",
+    "addon-main.cjs",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "scripts": {
+    "release": "semantic-release",
+    "start": "concurrently 'npm:watch:*'",
+    "build": "concurrently 'npm:build:*'",
+    "build:js": "rollup -c ./rollup.config.js",
+    "build:docs": "cp ../README.md ./README.md",
+    "watch:js": "rollup -c --watch --no-watch.clearScreen",
+    "lint": "concurrently 'npm:lint:js'",
+    "lint:fix": "concurrently 'npm:lint:js:fix'",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "test": "echo 'Addon does not have tests, run tests in test-app'",
+    "prepublishOnly": "pnpm run build"
+  },
+  "dependencies": {
+    "@embroider/addon-shim": "^1.7.1",
+    "@embroider/macros": "^1.7.1",
+    "ember-modifier": "^3.2.7"
+  },
+  "peerDependencies": {
+    "@ember/test-helpers": ">= 2.4.0",
+    "ember-source": ">= 3.24.0"
+  },
+  "peerDependenciesMeta": {
+    "@ember/test-helpers": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@babel/core": "7.18.2",
+    "@babel/plugin-proposal-class-properties": "7.17.12",
+    "@babel/plugin-syntax-decorators": "7.17.12",
+    "@babel/plugin-proposal-decorators": "7.18.2",
+    "@embroider/addon-dev": "1.7.1",
+    "@nullvoxpopuli/eslint-configs": "2.2.20",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@types/ember__debug": "^4.0.1",
+    "@types/ember__test-helpers": "^2.6.1",
+    "concurrently": "7.2.1",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-plugin-decorator-position": "4.0.1",
+    "eslint-plugin-ember": "10.6.1",
+    "eslint-plugin-import": "2.26.0",
+    "eslint-plugin-json": "3.1.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "rollup": "2.75.0",
+    "babel-eslint": "10.1.0",
+    "eslint": "^7.0.0",
+    "@babel/plugin-transform-typescript": "7.18.1",
+    "@babel/preset-typescript": "7.17.12",
+    "rollup-plugin-ts": "2.0.7",
+    "semantic-release": "^19.0.2",
+    "prettier": "^2.0.0",
+    "typescript": "4.5.2"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "ember": {
+    "edition": "octane"
+  },
+  "ember-addon": {
+    "version": 2,
+    "type": "addon",
+    "main": "./addon-main.cjs",
+    "app-js": {
+      "./modifiers/-private/node-selectors.js": "./dist/_app_/modifiers/-private/node-selectors.js",
+      "./modifiers/aria-grid.js": "./dist/_app_/modifiers/aria-grid.js"
+    }
+  },
+  "engines": {
+    "node": "12.* || 14.* || >= 16"
+  },
+  "volta": {
+    "extends": "../package.json"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
+  },
+  "types": "dist"
+}
