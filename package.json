@@ -9,7 +9,7 @@
     "dev:addon": "pnpm run --filter ember-aria-utilities start --no-watch.clearScreen",
     "dev:docs": "pnpm run --filter docs start",
     "build": "pnpm run --filter ember-resources build",
-    "build:docs": "pnpm run --filter docs docs:collect",
+    "build:docs": "pnpm turbo run build --filter=docs",
     "lint:js": "pnpm turbo run lint:js"
   },
   "devDependencies": {
