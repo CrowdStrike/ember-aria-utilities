@@ -10,9 +10,13 @@ ARIA utilities for helping create some of the mare complex ARIA design patterns.
 Compatibility
 ------------------------------------------------------------------------------
 
-* Ember.js v3.20 or above
-* Ember CLI v3.20 or above
-* Node.js v12 or above
+* ember-source v3.24 or above
+* ember-auto-import v2 or above
+* ember-cli classic build, embroider safe and optimized builds
+* typescript v4.5.2 or above
+
+For testing
+* @ember/test-helpers v2.4 or above
 
 
 Installation

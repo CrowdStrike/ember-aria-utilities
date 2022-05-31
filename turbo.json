@@ -1,0 +1,13 @@
+{
+  "baseBranch": "origin/main",
+  "pipeline": {
+    "lint:js": {},
+    "lint:hbs": {},
+    "lint:fix": {},
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    }
+  }
+}
