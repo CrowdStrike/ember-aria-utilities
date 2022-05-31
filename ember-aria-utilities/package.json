@@ -6,7 +6,7 @@
     "aria",
     "aria-grid"
   ],
-  "description": "ARIA utilities for helping create some of the mare complex ARIA design patterns. Follows https://www.w3.org/TR/wai-aria-practices/",
+  "description": "ARIA utilities for helping create some of the more complex ARIA design patterns. Follows https://www.w3.org/TR/wai-aria-practices/",
   "repository": "https://github.com/CrowdStrike/ember-aria",
   "license": "MIT",
   "author": "CrowdStrike UX Team",
