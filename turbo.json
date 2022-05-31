@@ -3,6 +3,7 @@
   "pipeline": {
     "lint:js": {},
     "lint:hbs": {},
+    "lint": {},
     "lint:fix": {},
     "build": {
       "dependsOn": [

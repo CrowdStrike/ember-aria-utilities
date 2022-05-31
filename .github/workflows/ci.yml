@@ -95,7 +95,6 @@ jobs:
           expect: |
             _app_/modifiers/aria-grid.js
             modifiers/aria-grid.d.ts
-            modifiers/aria-grid.d.ts.map
             modifiers/aria-grid.js
             modifiers/aria-grid.js.map
             test-support/index.js
