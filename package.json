@@ -8,8 +8,11 @@
     "dev:ember": "pnpm run --filter test-app start --port 0",
     "dev:addon": "pnpm run --filter ember-aria-utilities start --no-watch.clearScreen",
     "dev:docs": "pnpm run --filter docs start",
-    "build": "pnpm run --filter ember-resources build",
+    "build": "pnpm run --filter ember-aria-utilities build",
     "build:docs": "pnpm turbo run build --filter=docs",
+    "ci:update": "npx ember-ci-update",
+    "lint": "pnpm turbo run lint",
+    "lint:fix": "pnpm turbo run lint:fix",
     "lint:js": "pnpm turbo run lint:js"
   },
   "devDependencies": {

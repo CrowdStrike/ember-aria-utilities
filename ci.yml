@@ -1,0 +1,37 @@
+provider: github
+template: "v2-addon"
+
+# ---------------------
+
+addon: './ember-aria-utilities'
+testApp: './testing/test-app'
+
+lint:
+  commits: true
+  eslint:
+    - "./ember-aria-utilities"
+    - "./testing/test-app"
+
+build:
+  run: 'pnpm run build:js'
+  expect: |
+    _app_/modifiers/aria-grid.js
+    modifiers/aria-grid.d.ts
+    modifiers/aria-grid.js
+    modifiers/aria-grid.js.map
+    test-support/index.js
+    test-support/index.js.map
+    test-support/index.d.ts
+
+
+support:
+  ember-try: true
+  typescript:
+    - typescript@4.5
+    - typescript@4.6
+    - typescript@4.7
+    - typescript@next
+
+
+release:
+  semantic: true
