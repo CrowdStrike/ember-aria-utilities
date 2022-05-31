@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/CrowdStrike/ember-aria/compare/v2.0.1...v2.0.2) (2022-05-31)
+
+
+### Bug Fixes
+
+* trigger ci, due to misconfiguration earlier ([35b601a](https://github.com/CrowdStrike/ember-aria/commit/35b601a754c7ccf06b527cacbbdb4cfa5a6f2b8a))
+
 ## [2.0.1](https://github.com/CrowdStrike/ember-aria/compare/v2.0.0...v2.0.1) (2022-05-31)
 
 
