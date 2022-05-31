@@ -10,6 +10,7 @@
     "dev:docs": "pnpm run --filter docs start",
     "build": "pnpm run --filter ember-resources build",
     "build:docs": "pnpm turbo run build --filter=docs",
+    "ci:update": "npx ember-ci-update",
     "lint:js": "pnpm turbo run lint:js"
   },
   "devDependencies": {
