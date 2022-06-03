@@ -16,8 +16,6 @@ import {
 import { cellSelector, isCell, isNestedGrid } from './-private/node-selectors';
 
 /**
- * TODO: Open Source: ember-aria-utilities package
- *
  * Setup:
  *   all cells must be rendered with tabindex="-1"
  *   element {{aria-grid}} attaches to *must* have role="grid"
