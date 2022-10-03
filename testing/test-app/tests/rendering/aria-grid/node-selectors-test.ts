@@ -39,16 +39,14 @@ module('Rendering | node-selectors', function (hooks) {
   module('siblingsOf', function () {
     test('does not select nested cells in a nested grid', async function (assert) {
       await renderNestedGrid();
-      type Cell = {
-        id: string;
-      };
+
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       let firstCell = find('#cell-a')!;
       let siblings = siblingsOf(firstCell);
 
       assert.equal(siblings?.length, 2);
       assert.deepEqual(
-        siblings?.map((cell: Cell) => cell.id),
+        siblings?.map((cell) => cell.id),
         ['cell-a', 'cell-b']
       );
     });
