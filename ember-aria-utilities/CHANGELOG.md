@@ -1,3 +1,11 @@
+## [2.0.3](https://github.com/CrowdStrike/ember-aria/compare/v2.0.2...v2.0.3) (2022-10-03)
+
+
+### Bug Fixes
+
+* changed concurrency to concurrently to run pnpm dev ([0ff6ce0](https://github.com/CrowdStrike/ember-aria/commit/0ff6ce087a1b5767823638ad64b0e3d33a04099e))
+* changed concurrency to concurrently to run pnpm dev ([2e8f916](https://github.com/CrowdStrike/ember-aria/commit/2e8f916c6ad99108584ca2c2c1f3b917aaed4d51))
+
 ## [2.0.2](https://github.com/CrowdStrike/ember-aria/compare/v2.0.1...v2.0.2) (2022-05-31)
 
 
