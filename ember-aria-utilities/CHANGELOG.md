@@ -1,3 +1,15 @@
+## [2.0.4](https://github.com/CrowdStrike/ember-aria/compare/v2.0.3...v2.0.4) (2022-10-03)
+
+
+### Bug Fixes
+
+* provide the cell with a type instead of any ([6b22535](https://github.com/CrowdStrike/ember-aria/commit/6b2253560c47359a5d45fbbb7822b0856ca190e7))
+
+
+### Reverts
+
+* Revert "fix: provide the cell with a type instead of any" ([0cbf486](https://github.com/CrowdStrike/ember-aria/commit/0cbf4867bbfd15b5a1cad3cb637fdc0450611e1e))
+
 ## [2.0.3](https://github.com/CrowdStrike/ember-aria/compare/v2.0.2...v2.0.3) (2022-10-03)
 
 
