@@ -1,3 +1,11 @@
+## [2.0.5](https://github.com/CrowdStrike/ember-aria/compare/v2.0.4...v2.0.5) (2022-10-11)
+
+
+### Bug Fixes
+
+* remove circular dependency ([04fa44b](https://github.com/CrowdStrike/ember-aria/commit/04fa44bdca3084c0042c54b07971e700926b7c5a))
+* remove circular dependency ([c52ad29](https://github.com/CrowdStrike/ember-aria/commit/c52ad293c6313614abebaeadf78b5a40a8008edc))
+
 ## [2.0.4](https://github.com/CrowdStrike/ember-aria/compare/v2.0.3...v2.0.4) (2022-10-03)
 
 
