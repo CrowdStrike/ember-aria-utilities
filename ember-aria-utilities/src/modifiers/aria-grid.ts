@@ -5,14 +5,8 @@ import { modifier } from 'ember-modifier';
 import { deFocus, focus, focusFirstFocusableWithin, focusSurroundGridOf } from './-private/focus';
 import { prepareFirstCell, setTabTarget } from './-private/focus-intent';
 import { ENTER, ESCAPE, F2 } from './-private/keys';
-import {
-  disableNav,
-  enableNav,
-  handleNavigation,
-  isNavDisabled,
-  NAV_KEYS,
-  toggleNav,
-} from './-private/navigation';
+import { handleNavigation, NAV_KEYS } from './-private/navigation';
+import { disableNav, enableNav, isNavDisabled, toggleNav } from './-private/navigation-state';
 import { cellSelector, isCell, isNestedGrid } from './-private/node-selectors';
 
 /**
