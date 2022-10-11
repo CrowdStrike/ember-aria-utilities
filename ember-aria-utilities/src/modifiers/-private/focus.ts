@@ -2,7 +2,7 @@ import { assert } from '@ember/debug';
 
 import { isDevelopingApp, isTesting, macroCondition } from '@embroider/macros';
 
-import { enableNav } from './navigation';
+import { enableNav } from './navigation-state';
 import {
   cellRoles,
   cellSelector,
