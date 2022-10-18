@@ -1,0 +1,25 @@
+<table {{aria-grid}} role="grid">
+  <thead> 
+  <tr>
+    {{#each @columns as |column|}}
+      <td tabindex="-1">
+        {{column}}
+      </td>
+    {{/each}}
+  </tr>
+  </thead>
+  <tbody>
+    {{#each @rows as |dataset|}}
+      <tr>
+        {{#each dataset as |datum index|}}
+          <td
+            role="{{if (eq index 0) "rowheader" "cell"}}"
+            tabindex="-1"
+          >
+            {{datum}}
+          </td>
+        {{/each}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
