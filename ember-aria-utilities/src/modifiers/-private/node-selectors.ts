@@ -18,7 +18,7 @@ export function closestRow(current?: Element | null) {
   if (!current) return;
   if (!isCell(current)) return;
 
-  let group = current.closest('[role="row"]');
+  let group = current.closest('[role="row"], tr');
 
   if (!group) return;
 
@@ -39,7 +39,7 @@ export function rowAbove(element?: Element | null) {
    * "give me rows that are not descendants of a row"
    * so we have to use JS to filter them
    */
-  let rows = grid.querySelectorAll('[role="row"]:not([hidden])');
+  let rows = grid.querySelectorAll('[role="row"]:not([hidden]), tr:not([hidden])');
 
   // rows is an iterable, so let's take advantage of the fact
   // we don't *have* to enumerate all rows
@@ -78,7 +78,7 @@ export function rowBelow(element?: Element | null) {
    * "give me rows that are not descendants of a row"
    * so we have to use JS to filter them
    */
-  let rows = grid.querySelectorAll('[role="row"]:not([hidden])');
+  let rows = grid.querySelectorAll('[role="row"]:not([hidden]),tr:not([hidden])');
 
   // rows is an iterable, so let's take advantage of the fact
   // we don't *have* to enumerate all rows
