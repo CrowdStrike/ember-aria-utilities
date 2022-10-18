@@ -1,3 +1,23 @@
+# [2.1.0](https://github.com/CrowdStrike/ember-aria/compare/v2.0.5...v2.1.0) (2022-10-18)
+
+
+### Bug Fixes
+
+* add test for sample-data component ([4ab578e](https://github.com/CrowdStrike/ember-aria/commit/4ab578e3403dea8ed50ff0fd023c9fbd6c091b42))
+* add watchman to ember-aria-utilities ([765ab90](https://github.com/CrowdStrike/ember-aria/commit/765ab9044d81dc2ca19af5c75256ee663de1c014))
+* add watchman to ember-aria-utilities ([b224be7](https://github.com/CrowdStrike/ember-aria/commit/b224be75d6746514ba77e9864dfaea6952cd08a8))
+* remove ember-concurrency and replaced timeout function with a Promise ([6f2845c](https://github.com/CrowdStrike/ember-aria/commit/6f2845c5200adf1bdecb98c768ca865bb727087b))
+* remove ember-modifier as it is not in use ([fe4361d](https://github.com/CrowdStrike/ember-aria/commit/fe4361def6a282200d48e59ad29d9776efb8e29b))
+* update volta-cli action to v4 ([654160e](https://github.com/CrowdStrike/ember-aria/commit/654160ea0eb49b03965117343fc9c2f50acd3eee))
+* using trackedFunction instead of task/taskFor in sample data ([75c50ad](https://github.com/CrowdStrike/ember-aria/commit/75c50ad85e9f10eac19dc1d06e8d34322c9e1b1d))
+
+
+### Features
+
+* Add async arg to sample loader ([eb3e2f8](https://github.com/CrowdStrike/ember-aria/commit/eb3e2f832d24bf57ae578759d764450d38c7876c))
+* add dev dependencies for sample-data ([5bf7c55](https://github.com/CrowdStrike/ember-aria/commit/5bf7c559c95198bd15481a2f5e9dd94196225b2b))
+* make sample data async, but sync by default ([7e051ae](https://github.com/CrowdStrike/ember-aria/commit/7e051ae42b2452c531486fde4c20e584ea9a6b2a))
+
 ## [2.0.5](https://github.com/CrowdStrike/ember-aria/compare/v2.0.4...v2.0.5) (2022-10-11)
 
 
