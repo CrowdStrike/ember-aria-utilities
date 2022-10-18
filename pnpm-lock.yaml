@@ -8118,7 +8118,7 @@ packages:
     dev: true
 
   /ember-cli-normalize-entity-name/1.0.0:
-    resolution: {integrity: sha1-CxT3vLxZmqEXtf3cgeT9A8S61bc=}
+    resolution: {integrity: sha512-rF4P1rW2P1gVX1ynZYPmuIf7TnAFDiJmIUFI1Xz16VYykUAyiOCme0Y22LeZq8rTzwBMiwBwoE3RO4GYWehXZA==}
     dependencies:
       silent-error: 1.1.1
     transitivePeerDependencies:
@@ -8148,7 +8148,7 @@ packages:
     dev: true
 
   /ember-cli-string-utils/1.1.0:
-    resolution: {integrity: sha1-ObZ3/CgF9VFzc1N2/O8njqpEUqE=}
+    resolution: {integrity: sha512-PlJt4fUDyBrC/0X+4cOpaGCiMawaaB//qD85AXmDRikxhxVzfVdpuoec02HSiTGTTB85qCIzWBIh8lDOiMyyFg==}
 
   /ember-cli-terser/4.0.2:
     resolution: {integrity: sha512-Ej77K+YhCZImotoi/CU2cfsoZaswoPlGaM5TB3LvjvPDlVPRhxUHO2RsaUVC5lsGeRLRiHCOxVtoJ6GyqexzFA==}
@@ -10407,7 +10407,7 @@ packages:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
   /glob/5.0.15:
-    resolution: {integrity: sha1-G8k2ueAvSmA/zCIuz3Yz0wuLk7E=}
+    resolution: {integrity: sha512-c9IPMazfRITpmAAKi22dK1VKxGDX9ehhqfABDriL/lzO92xcUKEJPQHrVA/2YHSNFB4iFlykVmWvwo48nr3OxA==}
     dependencies:
       inflight: 1.0.6
       inherits: 2.0.4
@@ -10997,11 +10997,11 @@ packages:
       wrappy: 1.0.2
 
   /inherits/2.0.1:
-    resolution: {integrity: sha1-sX0I0ya0Qj5Wjv9xn5GwscvfafE=}
+    resolution: {integrity: sha512-8nWq2nLTAwd02jTqJExUYFSD/fKq6VH9Y/oG2accc/kdI0V98Bag8d5a4gi3XHz73rDWa2PvTtvcWYquKqSENA==}
     dev: true
 
   /inherits/2.0.3:
-    resolution: {integrity: sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=}
+    resolution: {integrity: sha512-x00IRNXNy63jwGkJmzPigoySHbaqpNuzKbBOmzK+g2OdZpQ9w+sxCN+VSB3ja7IAge2OP2qpfxTjeNcyjmW1uw==}
     dev: true
 
   /inherits/2.0.4:
@@ -11455,7 +11455,7 @@ packages:
     dev: true
 
   /istextorbinary/2.1.0:
-    resolution: {integrity: sha1-2+0qb1G+L3R1to+JRlgRFBt1iHQ=}
+    resolution: {integrity: sha512-kT1g2zxZ5Tdabtpp9VSdOzW9lb6LXImyWbzbQeTxoRtHhurC9Ej9Wckngr2+uepPL09ky/mJHmN9jeJPML5t6A==}
     engines: {node: '>=0.12'}
     dependencies:
       binaryextensions: 2.3.0
@@ -11655,13 +11655,13 @@ packages:
     dev: true
 
   /jsonfile/2.4.0:
-    resolution: {integrity: sha1-NzaitCi4e72gzIO1P6PWM6NcKug=}
+    resolution: {integrity: sha512-PKllAqbgLgxHaj8TElYymKCAgrASebJrWpTnEkOaTowt23VKXXN0sUeriJ+eh7y6ufb/CC5ap11pz71/cM0hUw==}
     optionalDependencies:
       graceful-fs: 4.2.10
     dev: true
 
   /jsonfile/4.0.0:
-    resolution: {integrity: sha1-h3Gq4HmbZAdrdmQPygWPnBDjPss=}
+    resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
     optionalDependencies:
       graceful-fs: 4.2.10
 
@@ -13524,11 +13524,11 @@ packages:
     resolution: {integrity: sha1-BrJhE/Vr6rBCVFojv6iAA8ysJg8=}
 
   /path-root-regex/0.1.2:
-    resolution: {integrity: sha1-v8zcjfWxLcUsi0PsONGNcsBLqW0=}
+    resolution: {integrity: sha512-4GlJ6rZDhQZFE0DPVKh0e9jmZ5egZfxTkp7bcRDuPlJXbAwhxcl2dINPUAsjLdejqaLsCeg8axcLjIbvBjN4pQ==}
     engines: {node: '>=0.10.0'}
 
   /path-root/0.1.1:
-    resolution: {integrity: sha1-mkpoFMrBwM1zNgqV8yCDyOpHRbc=}
+    resolution: {integrity: sha512-QLcPegTHF11axjfojBIoDygmS2E3Lf+8+jI6wOVmNVenrKSo3mFdSGiIgdSHenczw3wPtlVMQaFVwGmM7BJdtg==}
     engines: {node: '>=0.10.0'}
     dependencies:
       path-root-regex: 0.1.2
@@ -13774,7 +13774,7 @@ packages:
     dev: true
 
   /promise-map-series/0.2.3:
-    resolution: {integrity: sha1-wtN3r8kyU/a9A9u3d1XriKsgqEc=}
+    resolution: {integrity: sha512-wx9Chrutvqu1N/NHzTayZjE1BgIwt6SJykQoCOic4IZ9yUDjKyVYrpLa/4YCNsV61eRENfs29hrEquVuB13Zlw==}
     dependencies:
       rsvp: 3.6.2
 
@@ -15328,7 +15328,7 @@ packages:
     dev: true
 
   /strip-bom/3.0.0:
-    resolution: {integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=}
+    resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
     engines: {node: '>=4'}
     dev: true
 
@@ -16577,7 +16577,7 @@ packages:
     dev: true
 
   /walk-sync/0.2.7:
-    resolution: {integrity: sha1-tJvk7mhnZXrrc2l4tWop0Q+jmWk=}
+    resolution: {integrity: sha512-OH8GdRMowEFr0XSHQeX5fGweO6zSVHo7bG/0yJQx6LAj9Oukz0C8heI3/FYectT66gY0IPGe89kOvU410/UNpg==}
     dependencies:
       ensure-posix-path: 1.1.1
       matcher-collection: 1.1.2

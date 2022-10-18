@@ -1,22 +1,29 @@
 import Component from '@glimmer/component';
-import { cached } from '@glimmer/tracking';
 import { setComponentTemplate } from '@ember/component';
 import { hbs } from 'ember-cli-htmlbars';
 
 import { generateSampleData } from 'docs/data';
+import { trackedFunction } from 'ember-resources/util/function';
 
 export default class SampleData extends Component {
-  @cached
-  get data() {
+  request = trackedFunction(this, async () => {
+    const wait = this.args.timeout ?? 0;
+    // Simulate waiting for an async request
+    await new Promise((resolve) => setTimeout(resolve, wait));
+
     return generateSampleData(this.args.rows, this.args.columns);
+  });
+
+  get data() {
+    return this.request.value;
   }
 
   get columns() {
-    return this.data.headers;
+    return this.data?.headers;
   }
 
   get rows() {
-    return this.data.rows;
+    return this.data?.rows;
   }
 }
 
