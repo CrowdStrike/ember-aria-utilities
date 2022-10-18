@@ -31,7 +31,7 @@ ember install ember-aria-utilities
 
 This library provides keyboard interaction for grids based on the [ARIA Grid design pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#grid). This benefits people that interact with grids via keyboard or methods other than a mouse. This includes people such as power users and people that can’t use a mouse. The keyboard interactions make it easier to navigate large data sets.
 
-### Interactive Example
+### Interactive Examples
 
 This example allows you to try out the keyboard interactions as outlined in [§Keyboard Interaction](#keyboard-interaction).
 
@@ -57,6 +57,29 @@ This example allows you to try out the keyboard interactions as outlined in [§K
   <div tabindex="-1" role="cell">@zoe</div>
 </div>
 </div>
+
+### Table example
+
+<table {{aria-grid}}>
+  <thead>
+    <td>Dish</td>
+    <td>Contains</td>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ramen</td>
+      <td>Noodles</td>
+    </tr>
+    <tr>
+      <td>Beef Patties</td>
+      <td>Allspice</td>
+    </tr>
+    <tr>
+      <td>Dosa</td>
+      <td>Chana</td>
+    </tr>
+  </tbody>
+</table>
 
 ### Keyboard Interaction
 
