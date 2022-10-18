@@ -3,26 +3,20 @@ import { setComponentTemplate } from '@ember/component';
 import { hbs } from 'ember-cli-htmlbars';
 
 import { generateSampleData } from 'docs/data';
-import { task, timeout } from 'ember-concurrency';
-import { taskFor } from 'ember-concurrency-ts';
-import { modifier } from 'ember-modifier';
+import { timeout } from 'ember-concurrency';
+import { trackedFunction } from 'ember-resources/util/function';
 
 export default class SampleData extends Component {
-  setup = modifier(() => {
-    taskFor(this._getData).perform();
-  });
-
-  @task
-  *_getData() {
+  request = trackedFunction(this, async () => {
     const wait = this.args.timeout ?? 0;
     // Simulate waiting for an async request
-    yield timeout(wait);
+    await timeout(wait);
 
     return generateSampleData(this.args.rows, this.args.columns);
-  }
+  });
 
   get data() {
-    return taskFor(this._getData).lastSuccessful?.value;
+    return this.request.value;
   }
 
   get columns() {
@@ -36,7 +30,6 @@ export default class SampleData extends Component {
 
 setComponentTemplate(
   hbs`
-    {{this.setup}}
     {{yield this.columns this.rows}}
   `,
   SampleData
