@@ -85,6 +85,11 @@ export function focusSurroundGridOf(grid?: Element) {
   focus(focusable);
 }
 
+/**
+ * @description Loops through all the cells in a grid, and adds tabIndex="-1" to those cells missing a tabindex attribute
+ *
+ * @param {Element} grid - an element with role="grid" or {{aria-grid}} on it
+ */
 export function restoreTabIndexes(grid: Element) {
   let unfocusables = cellRoles.map((role) => `[role="${role}"]:not([tabindex])`).join(', ');
   let cells = grid.querySelectorAll(unfocusables);
@@ -256,6 +261,7 @@ export function nextCell(current: Element) {
   if (!cells) return;
 
   let currentIndex = cells.indexOf(current);
+
   let nextCell = cells[currentIndex + 1];
 
   focus(nextCell);
