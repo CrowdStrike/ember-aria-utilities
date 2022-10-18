@@ -54,7 +54,6 @@ importers:
       ember-cli-terser: ^4.0.2
       ember-functions-as-helper-polyfill: ^2.1.1
       ember-load-initializers: ^2.1.2
-      ember-modifier: ^3.2.7
       ember-page-title: ^7.0.0
       ember-qunit: ^5.1.5
       ember-resolver: ^8.0.3
@@ -104,7 +103,6 @@ importers:
       ember-cli-sri: 2.1.1
       ember-cli-terser: 4.0.2
       ember-load-initializers: 2.1.2_@babel+core@7.18.2
-      ember-modifier: 3.2.7_@babel+core@7.18.2
       ember-page-title: 7.0.0
       ember-qunit: 5.1.5_m2vpijm5kklvqmlfibufmotnbi
       ember-resolver: 8.0.3_@babel+core@7.18.2
@@ -8529,6 +8527,7 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
+    dev: false
 
   /ember-page-title/6.2.2:
     resolution: {integrity: sha512-YTXA+cylZrh9zO0zwjlaAGReT2MVOxAMnVO1OOygFrs1JBs4D6CKV3tImoilg3AvIXFBeJfFNNUbJOdRd9IGGg==}
