@@ -11,7 +11,11 @@ import { hbs } from 'ember-cli-htmlbars';
 
 import { Resource } from 'ember-resources/core';
 
-class Toggle extends Resource {
+interface Signature {
+  Positional: [unknown];
+}
+
+class Toggle extends Resource<Signature> {
   @tracked state: unknown = false;
 
   modify([nextState]: [unknown]) {

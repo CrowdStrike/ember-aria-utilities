@@ -114,7 +114,7 @@ module('{{aria-grid}}', function (hooks) {
         return;
       }
 
-      assert.equal(
+      assert.strictEqual(
         e.message,
         `Assertion Failed: {{aria-grid}} modifier may only be used on elements with role="grid"`
       );
@@ -271,7 +271,7 @@ module('{{aria-grid}}', function (hooks) {
         await keys.tab();
         // await triggerKeyEvent('#before', 'keydown', 'Tab');
 
-        assert.equal(document.activeElement, first);
+        assert.strictEqual(document.activeElement, first);
       });
 
       skip('after clicking a cell, tabbing still exits the grid', async function (assert) {
@@ -289,7 +289,7 @@ module('{{aria-grid}}', function (hooks) {
         await click(last);
         await keys.tab();
 
-        assert.equal(document.activeElement, last);
+        assert.strictEqual(document.activeElement, last);
       });
 
       skip('with nested focusables', async function (assert) {
@@ -873,8 +873,8 @@ module('{{aria-grid}}', function (hooks) {
       );
 
       assert.ok(expected);
-      assert.equal(document.activeElement, expected);
-      assert.equal(document.activeElement?.closest(selectors.grid), rootGrid);
+      assert.strictEqual(document.activeElement, expected);
+      assert.strictEqual(document.activeElement?.closest(selectors.grid), rootGrid);
     });
 
     skip('when focus in a nested grid, escape goes back to the last cell in the outer grid', async function () {
@@ -904,8 +904,8 @@ module('{{aria-grid}}', function (hooks) {
       let expected = rows[rows.length - 1];
 
       assert.ok(expected);
-      assert.equal(closestRow(document.activeElement), expected);
-      assert.equal(document.activeElement?.closest(selectors.grid), rootGrid);
+      assert.strictEqual(closestRow(document.activeElement), expected);
+      assert.strictEqual(document.activeElement?.closest(selectors.grid), rootGrid);
 
       let buttons = findAll('button');
 
@@ -916,8 +916,8 @@ module('{{aria-grid}}', function (hooks) {
       await keys.up();
       await keys.up();
 
-      assert.equal(closestRow(document.activeElement), rows[0]);
-      assert.equal(document.activeElement?.closest(selectors.grid), rootGrid);
+      assert.strictEqual(closestRow(document.activeElement), rows[0]);
+      assert.strictEqual(document.activeElement?.closest(selectors.grid), rootGrid);
     });
   });
 });

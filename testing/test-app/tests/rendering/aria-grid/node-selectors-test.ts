@@ -44,7 +44,7 @@ module('Rendering | node-selectors', function (hooks) {
       let firstCell = find('#cell-a')!;
       let siblings = siblingsOf(firstCell);
 
-      assert.equal(siblings?.length, 2);
+      assert.strictEqual(siblings?.length, 2);
       assert.deepEqual(
         siblings?.map((cell) => cell.id),
         ['cell-a', 'cell-b']
@@ -60,7 +60,7 @@ module('Rendering | node-selectors', function (hooks) {
       let above = rowAbove(lastCell);
 
       assert.ok(above, 'a row above exists');
-      assert.equal(above?.id, 'row-a');
+      assert.strictEqual(above?.id, 'row-a');
     });
   });
 
@@ -72,7 +72,7 @@ module('Rendering | node-selectors', function (hooks) {
       let below = rowBelow(firstCell);
 
       assert.ok(below, 'a row above exists');
-      assert.equal(below?.id, 'row-c');
+      assert.strictEqual(below?.id, 'row-c');
     });
   });
 });
