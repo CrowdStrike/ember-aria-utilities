@@ -28,8 +28,6 @@
   "packageManager": "pnpm@7.1.2",
   "pnpm": {
     "overrides": {
-      "@embroider/addon-shim": "1.7.1",
-      "@embroider/util": "1.7.1",
       "@types/eslint": "7.29.0"
     },
     "peerDependencyRules": {
