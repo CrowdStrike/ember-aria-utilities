@@ -66,7 +66,7 @@ module.exports = async function () {
           },
         },
       },
-     embroiderSafe({
+      embroiderSafe({
         name: 'ember-release + embroider-safe',
         npm: {
           devDependencies: {
