@@ -24,7 +24,7 @@
     "embroider:start": "EMBROIDER_TEST_SETUP_FORCE=embroider EMBROIDER_TEST_SETUP_OPTIONS=optimized ember s",
     "embroider:test": "EMBROIDER_TEST_SETUP_FORCE=embroider EMBROIDER_TEST_SETUP_OPTIONS=optimized ember test",
     "try:embroider:start": "ember try:one embroider-optimized --- ember s",
-    "try:embroider:test": "ember try:one embroider-optimized"
+    "try:embroider:test": "ember try:one 'ember-lts-4.4 + embroider-optimized'"
   },
   "dependencies": {
     "@ember/test-helpers": "^2.4.2",
