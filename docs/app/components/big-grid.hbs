@@ -1,0 +1,22 @@
+<div {{aria-grid}} role="grid">
+  <div role="row">
+    {{#each @columns as |column|}}
+      <div role="columnheader" tabindex="-1">
+        {{column}}
+      </div>
+    {{/each}}
+  </div>
+
+  {{#each @rows as |dataset|}}
+    <div role="row">
+      {{#each dataset as |datum index|}}
+        <div
+          role="{{if (eq index 0) "rowheader" "cell"}}"
+          tabindex="-1"
+        >
+          {{datum}}
+        </div>
+      {{/each}}
+    </div>
+  {{/each}}
+</div>
