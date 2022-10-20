@@ -29,7 +29,7 @@
   "dependencies": {
     "@ember/test-helpers": "^2.4.2",
     "@ember/test-waiters": "^3.0.2",
-    "ember-aria-utilities": "workspace:../ember-aria-utilities",
+    "ember-aria-utilities": "workspace:*",
     "ember-functions-as-helper-polyfill": "^2.1.1",
     "ember-resources": "^5.4.0",
     "ember-source": "^4.8.0"
