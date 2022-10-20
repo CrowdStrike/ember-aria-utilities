@@ -23,9 +23,6 @@ const gridData = modifier(
       gridElement.getAttribute('role') === 'grid'
     );
 
-    prepareFirstCell(gridElement);
-    installRowIndices(gridElement);
-
     let mutationDestructor = setupMutationObserver(gridElement);
     let keyHandler = keyHandlerFor(gridElement, isMac as boolean);
     let clickHandler = clickHandlerFor(gridElement);
@@ -49,17 +46,13 @@ export default gridData;
  ************************************************/
 
 // Grid -> MutationObserver
-const mutationObservers = new WeakMap<HTMLElement, MutationObserver>();
 
 function setupMutationObserver(grid: HTMLElement) {
-  let observer = mutationObservers.get(grid);
-
   // our modifier doesn't take any arguments that would require destroying the
   // mutation observer
-  if (observer) return;
-
-  observer = new MutationObserver((/* mutationList */) => {
+  let observer = new MutationObserver((/* mutationList */) => {
     if (grid && document.body.contains(grid)) {
+      prepareFirstCell(grid);
       installRowIndices(grid);
     }
   });
@@ -67,6 +60,7 @@ function setupMutationObserver(grid: HTMLElement) {
   // Start observing the target node for configured mutations
   observer.observe(grid, {
     childList: true,
+    subtree: true, // needed for tables with thead/tbody
   });
 
   // Later, you can stop observing
@@ -78,7 +72,7 @@ function installRowIndices(grid: HTMLElement) {
   //  CSS doesn't have a way to select rows that are not descendants of another row.
   //  For now, we have to use JS to simulate this behavior, but we should go back to CSS
   //  as soon as we are able.
-  let allRows = grid.querySelectorAll('[role="row"]');
+  let allRows = grid.querySelectorAll('[role="row"], tr');
   let rows = [...allRows].filter((row) => row.closest('[role="grid"]') === grid);
 
   grid.setAttribute('aria-rowcount', `${rows.length}`);
@@ -152,11 +146,12 @@ function keyHandlerFor(gridElement: HTMLElement, isMac: boolean) {
         return;
 
       default:
-      // if (DEBUG) {
-      //   // eslint-disable-next-line no-console
-      //   console.debug(`Ignored key event`, event);
-      // }
-      // ignore?
+        // if (DEBUG) {
+        //   // eslint-disable-next-line no-console
+        //   console.debug(`Ignored key event`, event);
+        // }
+        // ignore?
+        break;
     }
   };
 }
