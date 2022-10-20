@@ -28,6 +28,7 @@
   "packageManager": "pnpm@7.1.2",
   "pnpm": {
     "overrides": {
+      "@embroider/util": "1.9.0",
       "@types/eslint": "7.29.0"
     },
     "peerDependencyRules": {
