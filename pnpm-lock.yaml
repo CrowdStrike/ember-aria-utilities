@@ -271,7 +271,7 @@ importers:
     dependencies:
       '@ember/test-helpers': 2.8.1_44zau4gslyki3rcm3qc4yjjvrq
       '@ember/test-waiters': 3.0.2
-      ember-aria-utilities: link:../../ember-aria-utilities
+      ember-aria-utilities: file:ember-aria-utilities_l2u3cjlgfa4yda4qthnqijf6ve
       ember-functions-as-helper-polyfill: 2.1.1_ember-source@4.8.0
       ember-resources: 5.4.0_l6472ahe6tj6tdbw43kqcvl2d4
       ember-source: 4.8.0_qgwbsqca2eub3f4vd3hrm6flxy
@@ -346,6 +346,9 @@ importers:
       semantic-release: 19.0.5
       typescript: 4.8.4
       webpack: 5.74.0
+    dependenciesMeta:
+      ember-aria-utilities:
+        injected: true
 
 packages:
 
@@ -12026,6 +12029,20 @@ packages:
       - supports-color
     dev: false
 
+  /ember-modifier/3.2.7_@babel+core@7.19.6:
+    resolution: {integrity: sha512-ezcPQhH8jUfcJQbbHji4/ZG/h0yyj1jRDknfYue/ypQS8fM8LrGcCMo0rjDZLzL1Vd11InjNs3BD7BdxFlzGoA==}
+    engines: {node: 12.* || >= 14}
+    dependencies:
+      ember-cli-babel: 7.26.11
+      ember-cli-normalize-entity-name: 1.0.0
+      ember-cli-string-utils: 1.1.0
+      ember-cli-typescript: 5.1.0
+      ember-compatibility-helpers: 1.2.6_@babel+core@7.19.6
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+    dev: false
+
   /ember-page-title/7.0.0:
     resolution: {integrity: sha512-oq6+HYbeVD/BnxIO5AkP4gWlsatdgW2HFO10F8+XQiJZrwa7cC7Wm54JNGqQkavkDQTgNSiy1Fe2NILJ14MmAg==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -12720,7 +12737,7 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.26.0_sgaiclxgc5mltnpgmg7py4v6ca
+      '@typescript-eslint/parser': 5.26.0_zntrekxpj44l2oq5bhpza7geyi
       debug: 3.2.7
       eslint-import-resolver-node: 0.3.6
       find-up: 2.1.0
@@ -12876,7 +12893,7 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.26.0_sgaiclxgc5mltnpgmg7py4v6ca
+      '@typescript-eslint/parser': 5.26.0_zntrekxpj44l2oq5bhpza7geyi
       array-includes: 3.1.5
       array.prototype.flat: 1.3.0
       debug: 2.6.9
@@ -21297,4 +21314,27 @@ packages:
 
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
+    dev: false
+
+  file:ember-aria-utilities_l2u3cjlgfa4yda4qthnqijf6ve:
+    resolution: {directory: ember-aria-utilities, type: directory}
+    id: file:ember-aria-utilities
+    name: ember-aria-utilities
+    version: 2.0.5
+    engines: {node: 12.* || 14.* || >= 16}
+    peerDependencies:
+      '@ember/test-helpers': ^2.4.0
+      ember-source: '>= 3.24.0'
+    peerDependenciesMeta:
+      ember-source:
+        optional: true
+    dependencies:
+      '@ember/test-helpers': 2.8.1_44zau4gslyki3rcm3qc4yjjvrq
+      '@embroider/addon-shim': 1.7.1
+      '@embroider/macros': 1.9.0
+      ember-modifier: 3.2.7_@babel+core@7.19.6
+      ember-source: 4.8.0_qgwbsqca2eub3f4vd3hrm6flxy
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
     dev: false
