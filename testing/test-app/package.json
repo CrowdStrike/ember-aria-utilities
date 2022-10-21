@@ -34,6 +34,11 @@
     "ember-resources": "^5.4.0",
     "ember-source": "^4.8.0"
   },
+  "dependenciesMeta": {
+    "ember-aria-utilities": {
+      "injected": true
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@ember/optional-features": "^2.0.0",
