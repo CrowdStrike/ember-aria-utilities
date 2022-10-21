@@ -4,6 +4,9 @@ const getChannelURL = require('ember-source-channel-url');
 const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
 
 module.exports = async function () {
+  let releaseVersion = await getChannelURL('release');
+  let embroiderVersion = '^1.9.0';
+
   return {
     usePnpm: true,
     scenarios: [
@@ -43,7 +46,7 @@ module.exports = async function () {
         name: 'ember-release',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('release'),
+            'ember-source': releaseVersion,
           },
         },
       },
@@ -64,16 +67,46 @@ module.exports = async function () {
         },
       },
       embroiderSafe({
+        name: 'ember-release + embroider-safe',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('release'),
+            '@embroider/core': embroiderVersion,
+            '@embroider/webpack': embroiderVersion,
+            '@embroider/compat': embroiderVersion,
+            'ember-source': releaseVersion,
           },
         },
       }),
       embroiderOptimized({
+        name: 'ember-release + embroider-optimized',
         npm: {
           devDependencies: {
-            'ember-source': await getChannelURL('release'),
+            '@embroider/core': embroiderVersion,
+            '@embroider/webpack': embroiderVersion,
+            '@embroider/compat': embroiderVersion,
+            'ember-source': releaseVersion,
+          },
+        },
+      }),
+      embroiderOptimized({
+        name: 'ember-lts-3.28 + embroider-optimized',
+        npm: {
+          devDependencies: {
+            '@embroider/core': embroiderVersion,
+            '@embroider/webpack': embroiderVersion,
+            '@embroider/compat': embroiderVersion,
+            'ember-source': '~3.28.0',
+          },
+        },
+      }),
+      embroiderOptimized({
+        name: 'ember-lts-4.4 + embroider-optimized',
+        npm: {
+          devDependencies: {
+            '@embroider/core': embroiderVersion,
+            '@embroider/webpack': embroiderVersion,
+            '@embroider/compat': embroiderVersion,
+            'ember-source': '~4.4.0',
           },
         },
       }),
