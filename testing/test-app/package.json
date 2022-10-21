@@ -24,18 +24,18 @@
     "embroider:start": "EMBROIDER_TEST_SETUP_FORCE=embroider EMBROIDER_TEST_SETUP_OPTIONS=optimized ember s",
     "embroider:test": "EMBROIDER_TEST_SETUP_FORCE=embroider EMBROIDER_TEST_SETUP_OPTIONS=optimized ember test",
     "try:embroider:start": "ember try:one embroider-optimized --- ember s",
-    "try:embroider:test": "ember try:one embroider-optimized"
+    "try:embroider:test": "ember try:one 'ember-lts-4.4 + embroider-optimized'"
   },
   "dependencies": {
     "@ember/test-helpers": "^2.4.2",
     "@ember/test-waiters": "^3.0.2",
-    "ember-aria-utilities": "*",
+    "ember-aria-utilities": "workspace:*",
     "ember-functions-as-helper-polyfill": "^2.1.1",
     "ember-resources": "^5.4.0",
     "ember-source": "^4.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
+    "@babel/core": "^7.19.6",
     "@ember/optional-features": "^2.0.0",
     "@embroider/compat": "^1.9.0",
     "@embroider/core": "^1.9.0",
@@ -43,7 +43,7 @@
     "@embroider/webpack": "^1.9.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@glint/template": "^0.9.5",
+    "@glint/template": "^0.9.6",
     "@nullvoxpopuli/eslint-configs": "^2.2.62",
     "@tsconfig/ember": "^1.0.1",
     "@types/ember": "^4.0.1",
@@ -75,7 +75,7 @@
     "ember-addon-automated-ci": "2.1.4",
     "ember-auto-import": "^2.4.3",
     "ember-cached-decorator-polyfill": "^1.0.1",
-    "ember-cli": "^4.7.0",
+    "ember-cli": "^4.8.0",
     "ember-cli-app-version": "^5.0.0",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^6.1.1",
