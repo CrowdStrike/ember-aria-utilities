@@ -1,3 +1,19 @@
+# [2.2.0](https://github.com/CrowdStrike/ember-aria/compare/v2.1.0...v2.2.0) (2022-10-21)
+
+
+### Bug Fixes
+
+* change ember-try config to use 1.9 embroider packages ([a73da26](https://github.com/CrowdStrike/ember-aria/commit/a73da269eae68efc3767a0a3c6c3818b8c4e6cef))
+* lint and pnpm lock updates ([0c98c5a](https://github.com/CrowdStrike/ember-aria/commit/0c98c5aa8935f037554da5ac9cced98f16deba07))
+* override to 1.9.0 for @embroider/util ([654929c](https://github.com/CrowdStrike/ember-aria/commit/654929c03d67042e2e52ce095a0d6f84373b4196))
+* remove 2 pnpm overrides ([a14a523](https://github.com/CrowdStrike/ember-aria/commit/a14a523f74cc483ec599f29e6fae8e27a761f783))
+
+
+### Features
+
+* update test dependencies and tsconfig ([c7a057c](https://github.com/CrowdStrike/ember-aria/commit/c7a057c8511bb25a2c544fe8b8d6f64683fbe00e))
+* update test dependencies and tsconfig ([55355ae](https://github.com/CrowdStrike/ember-aria/commit/55355ae03b7d49a13c9f2c64e6c1306e73c0e0be))
+
 # [2.1.0](https://github.com/CrowdStrike/ember-aria/compare/v2.0.5...v2.1.0) (2022-10-18)
 
 
