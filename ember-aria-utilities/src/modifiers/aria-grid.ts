@@ -23,6 +23,9 @@ const gridData = modifier(
       gridElement.getAttribute('role') === 'grid'
     );
 
+    prepareFirstCell(gridElement);
+    installRowIndices(gridElement);
+
     let mutationDestructor = setupMutationObserver(gridElement);
     let keyHandler = keyHandlerFor(gridElement, isMac as boolean);
     let clickHandler = clickHandlerFor(gridElement);
