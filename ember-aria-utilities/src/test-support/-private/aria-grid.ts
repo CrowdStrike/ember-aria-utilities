@@ -7,7 +7,7 @@ import { DOWN, END, ENTER, ESCAPE, F2, HOME, LEFT, RIGHT, UP } from '../../modif
  *  NOTE: nth-child is 1-indexed
  *        we like math / graphs, so we convert to 0-indexed
  */
-const selectors = {
+const gridSelectors = {
   tabbable: '[tabindex="0"]',
   untabbable: '[tabindex="-1"]',
   cell: '[role="cell"]',
@@ -21,37 +21,85 @@ const selectors = {
   bottomLeft: `[role="row"]:last-child [role="cell"]:first-child`,
 
   cellsInRow(n: number, append?: string) {
-    return `${selectors.rowAt(n)} ${selectors.cell}${append}`;
+    return `${gridSelectors.rowAt(n)} ${gridSelectors.cell}${append}`;
   },
 
   /**
    * To account for nested grids
    */
   rowsOf(grid: Element) {
-    let allRows = grid.querySelectorAll(selectors.row);
+    let allRows = grid.querySelectorAll(gridSelectors.row);
 
-    return [...allRows].filter((row) => row.closest(selectors.grid) === grid);
+    return [...allRows].filter((row) => row.closest(gridSelectors.grid) === grid);
   },
 
   rowAt(y?: number) {
     if (y === undefined) {
-      return `${selectors.row}:first-child`;
+      return `${gridSelectors.row}:first-child`;
     }
 
     // goal: (0, 0) is the first non-header cell
     // header is nth: 1 (we want it to be undefined)
     // first row is nth: 2 (we want it to be 0)
-    return `${selectors.row}:nth-child(${y + 2})`;
+    return `${gridSelectors.row}:nth-child(${y + 2})`;
   },
 
   cellAt(x: number, y?: number) {
-    let row = selectors.rowAt(y);
+    let row = gridSelectors.rowAt(y);
 
     if (y === undefined) {
-      return `${row} ${selectors.header}:nth-child(${x + 1})`;
+      return `${row} ${gridSelectors.header}:nth-child(${x + 1})`;
     }
 
-    return `${row} ${selectors.cell}:nth-child(${x + 1})`;
+    return `${row} ${gridSelectors.cell}:nth-child(${x + 1})`;
+  },
+} as const;
+
+const tableSelectors = {
+  tabbable: '[tabindex="0"]',
+  untabbable: '[tabindex="-1"]',
+  cell: '[role="cell"]',
+  header: '[role="columnheader"]',
+  row: 'tr',
+  grid: '[role="grid"]',
+
+  firstHeaderCell: `tr:first-child [role="columnheader"]:first-child`,
+  lastHeaderCell: `tr:first-child [role="columnheader"]:last-child`,
+  firstCell: `tr [role="cell"]:first-child`,
+  bottomLeft: `tr:last-child [role="cell"]:first-child`,
+
+  cellsInRow(n: number, append?: string) {
+    return `${tableSelectors.rowAt(n)} ${tableSelectors.cell}${append}`;
+  },
+
+  /**
+   * To account for nested grids
+   */
+  rowsOf(grid: Element) {
+    let allRows = grid.querySelectorAll(tableSelectors.row);
+
+    return [...allRows].filter((row) => row.closest(tableSelectors.grid) === grid);
+  },
+
+  rowAt(y?: number) {
+    if (y === undefined) {
+      return `${tableSelectors.row}:first-child`;
+    }
+
+    // goal: (0, 0) is the first non-header cell
+    // header is nth: 1 (we want it to be undefined)
+    // first row is nth: 2 (we want it to be 0)
+    return `${tableSelectors.row}:nth-child(${y + 2})`;
+  },
+
+  cellAt(x: number, y?: number) {
+    let row = tableSelectors.rowAt(y);
+
+    if (y === undefined) {
+      return `${row} ${tableSelectors.header}:nth-child(${x + 1})`;
+    }
+
+    return `${row} ${tableSelectors.cell}:nth-child(${x + 1})`;
   },
 } as const;
 
@@ -64,7 +112,7 @@ function triggerable(key: string, options?: Parameters<typeof triggerKeyEvent>[3
    *
    */
   return (parent = '') => {
-    let target = document.querySelector(`${root} ${parent} ${selectors.grid}`);
+    let target = document.querySelector(`${root} ${parent} ${gridSelectors.grid}`);
 
     assert(`Target for ${key} not found`, target);
 
@@ -105,5 +153,6 @@ const keys = {
 
 export const ariaGrid = {
   keys,
-  selectors,
+  gridSelectors,
+  tableSelectors,
 };

@@ -16,9 +16,9 @@ import { setupRenderingTest } from 'ember-qunit';
 import { closestRow } from 'ember-aria-utilities/modifiers/-private/node-selectors';
 import { ariaGrid } from 'ember-aria-utilities/test-support';
 
-import { Grid, NestedGrid, repeat, withDefault } from '../helpers';
+import { AsyncData, Grid, NestedGrid, repeat, Table, withDefault } from '../helpers';
 
-const { keys, selectors } = ariaGrid;
+const { keys, gridSelectors, tableSelectors } = ariaGrid;
 
 const debugAssert: typeof assert = assert;
 
@@ -78,14 +78,19 @@ module('{{aria-grid}}', function (hooks) {
     QUnit.assert.dom('[data-debug-has-intended-focus]').hasAttribute('data-position', text);
   }
 
-  function assertRowIndex(grid?: Element) {
+  type Selectors = {
+    grid: string;
+    rowsOf: (selector: Element) => Element[];
+  };
+
+  function assertRowIndex(grid?: Element, gridOrTableSelectors: Selectors = gridSelectors) {
     let index = 1; // rowindex is 1-indexed
 
-    let _grid = grid ?? find(selectors.grid);
+    let _grid = grid ?? find(gridOrTableSelectors.grid);
 
-    assert(`No "${selectors.grid}" found in the DOM`, _grid);
+    assert(`No "${gridOrTableSelectors.grid}" found in the DOM`, _grid);
 
-    let rows = selectors.rowsOf(_grid);
+    let rows = gridOrTableSelectors.rowsOf(_grid);
 
     for (let row of rows) {
       QUnit.assert.dom(row).hasAttribute('aria-rowindex', `${index}`);
@@ -98,6 +103,8 @@ module('{{aria-grid}}', function (hooks) {
     this.owner.register('helper:repeat', repeat);
     this.owner.register(`component:grid`, Grid);
     this.owner.register(`component:nested-grid`, NestedGrid);
+    this.owner.register(`component:table`, Table);
+    this.owner.register(`component:async-data`, AsyncData);
   });
 
   hooks.afterEach(function () {
@@ -126,14 +133,18 @@ module('{{aria-grid}}', function (hooks) {
   test('Only the first cell has tabindex=0', async function (assert) {
     await render(hbs`<Grid />`);
 
-    assert.dom(selectors.tabbable).exists({ count: 1 });
+    assert.dom(gridSelectors.tabbable).exists({ count: 1 });
+
+    await render(hbs`<Table />`);
+
+    assert.dom(gridSelectors.tabbable).exists({ count: 1 });
   });
 
   test('Clicking a cell switches the tabindex=0 cell', async function (assert) {
     await render(hbs`<Grid />`);
 
-    let first = find(selectors.tabbable);
-    let others = findAll(selectors.untabbable);
+    let first = find(gridSelectors.tabbable);
+    let others = findAll(gridSelectors.untabbable);
 
     debugAssert(`No untabbable elements found`, Array.isArray(others));
 
@@ -143,7 +154,7 @@ module('{{aria-grid}}', function (hooks) {
 
     await click(lastElement);
 
-    let newTabTarget = find(selectors.tabbable);
+    let newTabTarget = find(gridSelectors.tabbable);
 
     assert.notEqual(first, newTabTarget);
   });
@@ -152,13 +163,19 @@ module('{{aria-grid}}', function (hooks) {
     test('row indices and row count are provided', async function (assert) {
       // 1: row count
       // 3: each row
-      assert.expect(4);
+      assert.expect(8);
 
       await render(hbs`<Grid @rows={{2}} />`);
 
-      assert.dom(selectors.grid).hasAttribute('aria-rowcount', '3', 'one header + 2 rows');
+      assert.dom(gridSelectors.grid).hasAttribute('aria-rowcount', '3', 'one header + 2 rows');
 
-      assertRowIndex();
+      assertRowIndex(undefined, gridSelectors);
+
+      await render(hbs`<Table @rows={{2}} />`);
+
+      assert.dom(tableSelectors.grid).hasAttribute('aria-rowcount', '3', 'one header + 2 rows');
+
+      assertRowIndex(undefined, tableSelectors);
     });
 
     test('rowcount / indices are updated when rows change', async function (assert) {
@@ -171,14 +188,33 @@ module('{{aria-grid}}', function (hooks) {
 
       await render(hbs`<Grid @rows={{this.rows}} />`);
 
-      assert.dom(selectors.grid).hasAttribute('aria-rowcount', '5', 'one header + 4 rows');
+      assert.dom(gridSelectors.grid).hasAttribute('aria-rowcount', '5', 'one header + 4 rows');
 
       this.setProperties({ rows: 10 });
+
       await settled();
 
-      assert.dom(selectors.grid).hasAttribute('aria-rowcount', '11', 'one header + 10 rows');
+      assert.dom(gridSelectors.grid).hasAttribute('aria-rowcount', '11', 'one header + 10 rows');
+      assertRowIndex(undefined, gridSelectors);
+    });
 
-      assertRowIndex();
+    test('rowcount / indices are updated when data is loaded asynchronously', async function (assert) {
+      await render(
+        hbs`<AsyncData @rows={{2}} as |rows|>
+        <Table @rows={{rows}} /></AsyncData>`
+      );
+
+      assert.dom(tableSelectors.grid).hasAttribute('aria-rowcount', '3', 'one header + 2 rows');
+
+      await render(
+        hbs`<AsyncData @timeout={{3000}} @rows={{10}} as |rows|>
+        <Table @rows={{rows}} /></AsyncData>`
+      );
+
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      assert.dom(tableSelectors.grid).hasAttribute('aria-rowcount', '11', 'one header + 5 rows');
+      assertRowIndex(undefined, tableSelectors);
     });
 
     test('rows inserted within a row (nested grids) do not affect the outer row count and index incrementing', async function (assert) {
@@ -205,7 +241,7 @@ module('{{aria-grid}}', function (hooks) {
         `
       );
 
-      let grids = findAll(selectors.grid);
+      let grids = findAll(gridSelectors.grid);
 
       assert.dom(grids[0]).hasAttribute('aria-rowcount', '3');
       assertRowIndex(grids[0]);
@@ -233,7 +269,7 @@ module('{{aria-grid}}', function (hooks) {
         `
       );
 
-      let grids = findAll(selectors.grid);
+      let grids = findAll(gridSelectors.grid);
 
       assert.dom(grids[0]).hasAttribute('aria-rowcount', '3');
       assert.dom('button').doesNotExist();
@@ -264,7 +300,7 @@ module('{{aria-grid}}', function (hooks) {
 
         focus('#before');
 
-        let first = find(selectors.cell);
+        let first = find(gridSelectors.cell);
 
         assert.notEqual(document.activeElement, first);
 
@@ -281,7 +317,7 @@ module('{{aria-grid}}', function (hooks) {
           <button id='after'>after</button>
         `);
 
-        let others = findAll(selectors.untabbable);
+        let others = findAll(gridSelectors.untabbable);
         let last = others[others.length - 1];
 
         debugAssert(`Last untabbable not available`, last);
@@ -300,7 +336,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Left', function () {
       test('when focus is on the left side', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.left();
@@ -309,7 +345,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is on the right side', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.cellsInRow(0, ':last-child'));
+        await click(gridSelectors.cellsInRow(0, ':last-child'));
         assertActive(2, 0);
 
         await keys.left();
@@ -326,7 +362,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+Left', function () {
       test('when focus is on the left side', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.ctrlLeft();
@@ -335,7 +371,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is on the right side', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.cellsInRow(0, ':last-child'));
+        await click(gridSelectors.cellsInRow(0, ':last-child'));
         assertActive(2, 0);
 
         await keys.ctrlLeft();
@@ -349,7 +385,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Right', function () {
       test('when focus is on the left side', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.right();
@@ -364,7 +400,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is on the right side', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.cellsInRow(0, ':last-child'));
+        await click(gridSelectors.cellsInRow(0, ':last-child'));
         assertActive(2, 0);
 
         await keys.right();
@@ -375,7 +411,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+Right', function () {
       test('when focus is on the left side', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.ctrlRight();
@@ -387,7 +423,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is on the right side', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.cellsInRow(0, ':last-child'));
+        await click(gridSelectors.cellsInRow(0, ':last-child'));
         assertActive(2, 0);
 
         await keys.ctrlRight();
@@ -398,7 +434,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Up', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.up();
@@ -410,7 +446,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the top', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.firstHeaderCell);
+        await click(gridSelectors.firstHeaderCell);
         assertActive(0);
 
         await keys.up();
@@ -419,7 +455,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the bottom', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.bottomLeft);
+        await click(gridSelectors.bottomLeft);
         assertActive(0, 2);
 
         await keys.up();
@@ -439,7 +475,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+Up', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.ctrlUp();
@@ -451,7 +487,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the top', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.firstHeaderCell);
+        await click(gridSelectors.firstHeaderCell);
         assertActive(0);
 
         await keys.ctrlUp();
@@ -460,7 +496,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the bottom', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.bottomLeft);
+        await click(gridSelectors.bottomLeft);
         assertActive(0, 2);
 
         await keys.ctrlUp();
@@ -477,7 +513,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Down', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.down();
@@ -489,7 +525,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the top', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.firstHeaderCell);
+        await click(gridSelectors.firstHeaderCell);
         assertActive(0);
 
         await keys.down();
@@ -507,7 +543,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the bottom', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.bottomLeft);
+        await click(gridSelectors.bottomLeft);
         assertActive(0, 2);
 
         await keys.down();
@@ -518,7 +554,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+Down', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.ctrlDown();
@@ -530,7 +566,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the top', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.firstHeaderCell);
+        await click(gridSelectors.firstHeaderCell);
         assertActive(0);
 
         await keys.ctrlDown();
@@ -542,7 +578,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the bottom', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.bottomLeft);
+        await click(gridSelectors.bottomLeft);
         assertActive(0, 2);
 
         await keys.ctrlDown();
@@ -553,7 +589,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Home', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.cellAt(0, 0));
+        await click(gridSelectors.cellAt(0, 0));
         assertActive(0, 0);
 
         await keys.home();
@@ -565,7 +601,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus on some other cell', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.cellAt(1, 0));
+        await click(gridSelectors.cellAt(1, 0));
         assertActive(1, 0);
 
         await keys.home();
@@ -577,7 +613,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus in the header', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.cellAt(1));
+        await click(gridSelectors.cellAt(1));
         assertActive(1);
 
         await keys.home();
@@ -591,7 +627,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+Home', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid />`);
-        await click(selectors.cellAt(0, 0));
+        await click(gridSelectors.cellAt(0, 0));
         assertActive(0, 0);
 
         await keys.ctrlHome();
@@ -603,7 +639,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus on some other row', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.cellAt(0, 2));
+        await click(gridSelectors.cellAt(0, 2));
         assertActive(0, 2);
 
         await keys.ctrlHome();
@@ -615,7 +651,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus in the header', async function () {
         await render(hbs`<Grid @rows={{3}} />`);
-        await click(selectors.cellAt(0));
+        await click(gridSelectors.cellAt(0));
         assertActive(0);
 
         await keys.ctrlHome();
@@ -629,7 +665,7 @@ module('{{aria-grid}}', function (hooks) {
     module('End', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid @columns={{3}} @rows={{3}} />`);
-        await click(selectors.cellAt(0, 0));
+        await click(gridSelectors.cellAt(0, 0));
         assertActive(0, 0);
 
         await keys.end();
@@ -641,7 +677,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus on some other cell', async function () {
         await render(hbs`<Grid @columns={{3}} @rows={{3}} />`);
-        await click(selectors.cellAt(1, 1));
+        await click(gridSelectors.cellAt(1, 1));
         assertActive(1, 1);
 
         await keys.end();
@@ -653,7 +689,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus in the header', async function () {
         await render(hbs`<Grid @columns={{3}} />`);
-        await click(selectors.cellAt(1));
+        await click(gridSelectors.cellAt(1));
         assertActive(1);
 
         await keys.end();
@@ -667,7 +703,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+End', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid @columns={{3}} @rows={{3}} />`);
-        await click(selectors.cellAt(0, 0));
+        await click(gridSelectors.cellAt(0, 0));
         assertActive(0, 0);
 
         await keys.ctrlEnd();
@@ -679,7 +715,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus on some other row', async function () {
         await render(hbs`<Grid @columns={{3}} @rows={{3}} />`);
-        await click(selectors.cellAt(1, 1));
+        await click(gridSelectors.cellAt(1, 1));
         assertActive(1, 1);
 
         await keys.ctrlEnd();
@@ -691,7 +727,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('with focus in the header', async function () {
         await render(hbs`<Grid @columns={{3}} @rows={{3}} />`);
-        await click(selectors.cellAt(1));
+        await click(gridSelectors.cellAt(1));
         assertActive(1);
 
         await keys.ctrlEnd();
@@ -715,7 +751,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+Home', function () {
       test('same behavior as without Ctrl', async function () {
         await render(hbs`<Grid @isMac={{true}} @rows={{3}} />`);
-        await click(selectors.cellAt(0, 2));
+        await click(gridSelectors.cellAt(0, 2));
         assertActive(0, 2);
 
         await keys.ctrlHome();
@@ -729,7 +765,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Ctrl+End', function () {
       test('same behavior as without Ctrl', async function () {
         await render(hbs`<Grid @isMac={{true}} @columns={{3}} @rows={{3}} />`);
-        await click(selectors.cellAt(1, 1));
+        await click(gridSelectors.cellAt(1, 1));
         assertActive(1, 1);
 
         await keys.ctrlEnd();
@@ -743,7 +779,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Apple+Left', function () {
       test('when focus is on the left side', async function () {
         await render(hbs`<Grid @isMac={{true}} />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.appleLeft();
@@ -752,7 +788,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is on the right side', async function () {
         await render(hbs`<Grid @isMac={{true}} @columns={{3}} />`);
-        await click(selectors.cellsInRow(0, ':last-child'));
+        await click(gridSelectors.cellsInRow(0, ':last-child'));
         assertActive(2, 0);
 
         await keys.appleLeft();
@@ -766,7 +802,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Apple+Right', function () {
       test('when focus is on the left side', async function () {
         await render(hbs`<Grid @isMac={{true}} @columns={{3}} />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.appleRight();
@@ -778,7 +814,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is on the right side', async function () {
         await render(hbs`<Grid @isMac={{true}} @columns={{3}} />`);
-        await click(selectors.cellsInRow(0, ':last-child'));
+        await click(gridSelectors.cellsInRow(0, ':last-child'));
         assertActive(2, 0);
 
         await keys.appleRight();
@@ -789,7 +825,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Apple+Up', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid @isMac={{true}} />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.appleUp();
@@ -801,7 +837,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the top', async function () {
         await render(hbs`<Grid @isMac={{true}} />`);
-        await click(selectors.firstHeaderCell);
+        await click(gridSelectors.firstHeaderCell);
         assertActive(0);
 
         await keys.appleUp();
@@ -810,7 +846,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the bottom', async function () {
         await render(hbs`<Grid @isMac={{true}} @rows={{3}} />`);
-        await click(selectors.bottomLeft);
+        await click(gridSelectors.bottomLeft);
         assertActive(0, 2);
 
         await keys.appleUp();
@@ -827,7 +863,7 @@ module('{{aria-grid}}', function (hooks) {
     module('Apple+Down', function () {
       test('with initial focus', async function () {
         await render(hbs`<Grid @isMac={{true}} @rows={{3}} />`);
-        await click(selectors.tabbable);
+        await click(gridSelectors.tabbable);
         assertActive(0, 0);
 
         await keys.appleDown();
@@ -839,7 +875,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the top', async function () {
         await render(hbs`<Grid @isMac={{true}} @rows={{3}} />`);
-        await click(selectors.firstHeaderCell);
+        await click(gridSelectors.firstHeaderCell);
         assertActive(0);
 
         await keys.appleDown();
@@ -851,7 +887,7 @@ module('{{aria-grid}}', function (hooks) {
 
       test('when focus is at the bottom', async function () {
         await render(hbs`<Grid @isMac={{true}} @rows={{3}} />`);
-        await click(selectors.bottomLeft);
+        await click(gridSelectors.bottomLeft);
         assertActive(0, 2);
 
         await keys.appleDown();
@@ -867,14 +903,14 @@ module('{{aria-grid}}', function (hooks) {
       await keys.right();
       await keys.down();
 
-      let rootGrid = find(selectors.grid);
+      let rootGrid = find(gridSelectors.grid);
       let expected = rootGrid?.querySelector(
-        `${selectors.row}[id]:not([hidden]) > ${selectors.cell}`
+        `${gridSelectors.row}[id]:not([hidden]) > ${gridSelectors.cell}`
       );
 
       assert.ok(expected);
       assert.strictEqual(document.activeElement, expected);
-      assert.strictEqual(document.activeElement?.closest(selectors.grid), rootGrid);
+      assert.strictEqual(document.activeElement?.closest(gridSelectors.grid), rootGrid);
     });
 
     skip('when focus in a nested grid, escape goes back to the last cell in the outer grid', async function () {
@@ -898,14 +934,16 @@ module('{{aria-grid}}', function (hooks) {
       await keys.down();
       await keys.down();
 
-      let rootGrid = find(selectors.grid);
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      let rows = selectors.rowsOf(rootGrid!).filter((row: Element) => !row.hasAttribute('hidden'));
+      let rootGrid = find(gridSelectors.grid);
+      let rows = gridSelectors
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        .rowsOf(rootGrid!)
+        .filter((row: Element) => !row.hasAttribute('hidden'));
       let expected = rows[rows.length - 1];
 
       assert.ok(expected);
       assert.strictEqual(closestRow(document.activeElement), expected);
-      assert.strictEqual(document.activeElement?.closest(selectors.grid), rootGrid);
+      assert.strictEqual(document.activeElement?.closest(gridSelectors.grid), rootGrid);
 
       let buttons = findAll('button');
 
@@ -917,7 +955,7 @@ module('{{aria-grid}}', function (hooks) {
       await keys.up();
 
       assert.strictEqual(closestRow(document.activeElement), rows[0]);
-      assert.strictEqual(document.activeElement?.closest(selectors.grid), rootGrid);
+      assert.strictEqual(document.activeElement?.closest(gridSelectors.grid), rootGrid);
     });
   });
 });
