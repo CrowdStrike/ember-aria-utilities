@@ -1,0 +1,22 @@
+<table role="grid" {{aria-grid}} ...attributes>
+  <thead>
+    <tr>
+      {{#each (repeat (with-default @columns 2)) as |num|}}
+        {{!-- template-lint-disable require-context-role --}}
+        <div role="columnheader" tabindex="-1">{{num}}</div>
+      {{/each}}
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each (repeat (with-default @rows 2)) as |row|}}
+      <tr>
+        {{#each (repeat (with-default @columns 2)) as |col|}}
+          <td role="cell" tabindex="-1" id="cell-{{@col}}x{{@row}}-of-{{@columns}}" data-position="({{@col}}, {{@row}})">
+            ({{@col}}, {{@row}})
+          </td>`
+        {{/each}}
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

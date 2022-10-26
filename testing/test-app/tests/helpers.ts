@@ -10,7 +10,6 @@ import { guidFor } from '@ember/object/internals';
 import { hbs } from 'ember-cli-htmlbars';
 
 import { Resource } from 'ember-resources/core';
-import { trackedFunction } from 'ember-resources/util/function';
 
 interface Signature {
   Positional: [unknown];
@@ -60,85 +59,6 @@ setComponentTemplate(
     </div>
   `,
   Grid
-);
-
-const TableCell = setComponentTemplate(
-  hbs`
-    <td role="cell" tabindex="-1" id="cell-{{@col}}x{{@row}}-of-{{@columns}}" data-position="({{@col}}, {{@row}})">
-      ({{@col}}, {{@row}})
-    </td>`,
-  templateOnly()
-);
-
-export class Table extends Component {
-  TableCell = TableCell;
-}
-
-setComponentTemplate(
-  hbs`
-    <table role="grid" {{aria-grid}} ...attributes>
-      <thead>
-        <tr>
-          {{#each (repeat (with-default @columns 2)) as |num|}}
-            <div role="columnheader" tabindex="-1">{{num}}</div>
-          {{/each}}
-        </tr>
-      </thead>
-
-      <tbody>
-        {{#each (repeat (with-default @rows 2)) as |row|}}
-          <tr>
-            {{#each (repeat (with-default @columns 2)) as |col|}}
-              <this.TableCell @col={{col}} @row={{row}} @columns={{@columns}} />
-            {{/each}}
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  `,
-  Table
-);
-
-type AsyncDataSignature = {
-  Args: {
-    rows: number;
-    columns: number;
-    timeout: number;
-  };
-
-  Blocks: {
-    default?: [rows: number, columns: number];
-  };
-};
-
-export class AsyncData extends Component<AsyncDataSignature> {
-  request = trackedFunction(this, async () => {
-    const wait = this.args.timeout ?? 0;
-
-    // Simulate waiting for an async request
-    await new Promise((resolve) => setTimeout(resolve, wait));
-
-    return { rows: this.args.rows, columns: this.args.columns };
-  });
-
-  get data() {
-    return this.request.value;
-  }
-
-  get columns() {
-    return this.data?.columns;
-  }
-
-  get rows() {
-    return this.data?.rows;
-  }
-}
-
-setComponentTemplate(
-  hbs`
-    {{yield this.rows this.columns }}
-  `,
-  AsyncData
 );
 
 export class NestedGrid extends Component {

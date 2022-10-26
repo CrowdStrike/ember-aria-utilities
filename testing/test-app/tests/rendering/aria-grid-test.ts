@@ -16,7 +16,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { closestRow } from 'ember-aria-utilities/modifiers/-private/node-selectors';
 import { ariaGrid } from 'ember-aria-utilities/test-support';
 
-import { AsyncData, Grid, NestedGrid, repeat, Table, withDefault } from '../helpers';
+import { Grid, NestedGrid, repeat, withDefault } from '../helpers';
 
 const { keys, gridSelectors, tableSelectors } = ariaGrid;
 
@@ -103,8 +103,6 @@ module('{{aria-grid}}', function (hooks) {
     this.owner.register('helper:repeat', repeat);
     this.owner.register(`component:grid`, Grid);
     this.owner.register(`component:nested-grid`, NestedGrid);
-    this.owner.register(`component:table`, Table);
-    this.owner.register(`component:async-data`, AsyncData);
   });
 
   hooks.afterEach(function () {
