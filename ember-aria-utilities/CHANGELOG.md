@@ -1,3 +1,11 @@
+## [2.2.1](https://github.com/CrowdStrike/ember-aria/compare/v2.2.0...v2.2.1) (2022-10-26)
+
+
+### Bug Fixes
+
+* remove timeout as the package is not in use ([15c9962](https://github.com/CrowdStrike/ember-aria/commit/15c99623c2f96f2db2793408682ba27c9a7ed0c3))
+* remove timeout as the package is not in use ([8fee84c](https://github.com/CrowdStrike/ember-aria/commit/8fee84c8d51ba1e4b5819ef35d3d45fd59ec4c7d))
+
 # [2.2.0](https://github.com/CrowdStrike/ember-aria/compare/v2.1.0...v2.2.0) (2022-10-21)
 
 
