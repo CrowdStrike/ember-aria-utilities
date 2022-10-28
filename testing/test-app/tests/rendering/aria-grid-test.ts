@@ -211,7 +211,7 @@ module('{{aria-grid}}', function (hooks) {
 
       await new Promise((resolve) => setTimeout(resolve, 3000));
 
-      assert.dom(tableSelectors.grid).hasAttribute('aria-rowcount', '11', 'one header + 5 rows');
+      assert.dom(tableSelectors.grid).hasAttribute('aria-rowcount', '11', 'one header + 10 rows');
       assertRowIndex(undefined, tableSelectors);
     });
 
