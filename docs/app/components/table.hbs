@@ -1,12 +1,12 @@
 <table role="grid" {{aria-grid}}>
   <thead> 
-  <tr>
-    {{#each @columns as |column|}}
-      <td tabindex="-1">
-        {{column}}
-      </td>
-    {{/each}}
-  </tr>
+    <tr>
+      {{#each @columns as |column|}}
+        <td tabindex="-1">
+          {{column}}
+        </td>
+      {{/each}}
+    </tr>
   </thead>
   <tbody>
     {{#each @rows as |dataset|}}
