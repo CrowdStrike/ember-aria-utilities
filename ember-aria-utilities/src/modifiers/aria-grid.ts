@@ -23,6 +23,9 @@ const gridData = modifier(
       gridElement.getAttribute('role') === 'grid'
     );
 
+    // prepareFirstCell needed here for grids that
+    // render all their rows + cells at once
+    // and do not ever re-render (i.e tests)
     prepareFirstCell(gridElement);
     installRowIndices(gridElement);
 
@@ -55,6 +58,8 @@ function setupMutationObserver(grid: HTMLElement) {
   // mutation observer
   let observer = new MutationObserver((/* mutationList */) => {
     if (grid && document.body.contains(grid)) {
+      // prepareFirstCell needed here for rows that render in a grid
+      // after the initial grid has rendered (asynchronous data loading)
       prepareFirstCell(grid);
       installRowIndices(grid);
     }
