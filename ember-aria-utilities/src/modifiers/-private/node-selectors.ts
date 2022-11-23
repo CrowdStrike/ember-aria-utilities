@@ -1,5 +1,5 @@
 export const cellRoles = ['cell', 'columnheader', 'rowheader'];
-export const cellSelector = '[role=cell], [role=columnheader], [role="rowheader"]';
+export const cellSelector = '[role=cell], [role=columnheader], [role="rowheader"], td, th';
 export const nonHeaderCell = '[role=cell], [role="rowheader"]';
 export const focusables = `button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])`;
 
@@ -120,7 +120,7 @@ export function isCell(element?: Element | null): boolean {
 
   let role = element.getAttribute('role');
 
-  return cellRoles.includes(role as string);
+  return cellRoles.includes(role as string) || element.tagName === 'TD' || element.tagName === 'TH';
 }
 
 export function containingGridOf(grid?: Element) {
