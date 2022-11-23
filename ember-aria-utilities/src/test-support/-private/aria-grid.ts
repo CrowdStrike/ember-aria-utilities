@@ -59,14 +59,14 @@ const tableSelectors = {
   tabbable: '[tabindex="0"]',
   untabbable: '[tabindex="-1"]',
   cell: '[role="cell"]',
-  header: '[role="columnheader"]',
+  header: 'th',
   row: 'tr',
   grid: '[role="grid"]',
 
-  firstHeaderCell: `tr:first-child [role="columnheader"]:first-child`,
-  lastHeaderCell: `tr:first-child [role="columnheader"]:last-child`,
-  firstCell: `tr [role="cell"]:first-child`,
-  bottomLeft: `tr:last-child [role="cell"]:first-child`,
+  firstHeaderCell: `tr:first-child th:first-child`,
+  lastHeaderCell: `tr:first-child th:last-child`,
+  firstCell: `tr [role="cell"]:first-child, tr td:first-child`,
+  bottomLeft: `tr:last-child [role="cell"]:first-child, tr:last-child td:first-child`,
 
   cellsInRow(n: number, append?: string) {
     return `${tableSelectors.rowAt(n)} ${tableSelectors.cell}${append}`;
@@ -83,13 +83,12 @@ const tableSelectors = {
 
   rowAt(y?: number) {
     if (y === undefined) {
-      return `${tableSelectors.row}:first-child`;
+      return `thead ${tableSelectors.row}:first-child`;
     }
 
     // goal: (0, 0) is the first non-header cell
-    // header is nth: 1 (we want it to be undefined)
-    // first row is nth: 2 (we want it to be 0)
-    return `${tableSelectors.row}:nth-child(${y + 2})`;
+    // first row is nth: 1 (we want it to be 0)
+    return `tbody ${tableSelectors.row}:nth-child(${y + 1})`;
   },
 
   cellAt(x: number, y?: number) {
