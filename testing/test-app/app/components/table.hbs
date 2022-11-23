@@ -1,19 +1,20 @@
 <table role="grid" {{aria-grid}} ...attributes>
   <thead>
     <tr>
+      {{!-- TODO: recreate helpers if needed in tests--}}
       {{#each (repeat (with-default @columns 2)) as |num|}}
-        {{!-- template-lint-disable require-context-role --}}
-        <div role="columnheader" tabindex="-1">{{num}}</div>
+        <th tabindex="-1">{{num}}</th>
       {{/each}}
     </tr>
   </thead>
 
   <tbody>
     {{#each (repeat (with-default @rows 2)) as |row|}}
-      <tr>
+      <tr role="">
         {{#each (repeat (with-default @columns 2)) as |col|}}
-          <td role="cell" tabindex="-1" id="cell-{{@col}}x{{@row}}-of-{{@columns}}" data-position="({{@col}}, {{@row}})">
-            ({{@col}}, {{@row}})
+          {{!-- template-lint-disable require-context-role --}}
+          <td role="cell" tabindex="-1" id="cell-{{col}}x{{row}}-of-{{@columns}}" data-position="({{col}}, {{row}})">
+            ({{col}}, {{row}})
           </td>`
         {{/each}}
       </tr>
