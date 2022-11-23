@@ -132,15 +132,17 @@ export function firstCellOfColumn(current: Element) {
   if (!grid) return;
 
   let index = cells.indexOf(current);
-  let topRow: Nullable<Element> = closestRow(grid.querySelector('[role="row"] [role="cell"]'));
+  let topRow: Nullable<Element> = closestRow(
+    grid.querySelector('[role="row"] [role="cell"], tr td')
+  );
 
-  let firstRow = grid.querySelector('[role="row"]');
+  let firstRow = grid.querySelector('[role="row"], tr');
 
   // We can't go first-er
   if (row === firstRow) return;
 
   if (row === topRow) {
-    topRow = closestRow(grid.querySelector('[role="row"] [role="columnheader"]'));
+    topRow = closestRow(grid.querySelector('[role="row"] [role="columnheader"], thead tr th'));
   }
 
   if (!topRow) return;
@@ -161,12 +163,12 @@ export function lastCellOfColumn(current: Element) {
   if (!grid) return;
 
   let index = cells.indexOf(current);
-  let bottomRow = grid.querySelector('[role="row"]:last-child');
+  let bottomRow = grid.querySelector('[role="row"]:last-child, tbody tr:last-child');
 
   if (!bottomRow) return;
 
-  let topCells = bottomRow.querySelectorAll(cellSelector);
-  let cell = topCells[index];
+  let bottomCells = bottomRow.querySelectorAll(cellSelector);
+  let cell = bottomCells[index];
 
   focus(cell);
 }
