@@ -1,4 +1,4 @@
-<table role="grid" {{aria-grid}} ...attributes>
+<table role="grid" {{aria-grid (with-default @isMac false)}} ...attributes>
   <thead>
     <tr>
       {{!-- TODO: recreate helpers if needed in tests--}}
@@ -10,7 +10,7 @@
 
   <tbody>
     {{#each (repeat (with-default @rows 2)) as |row|}}
-      <tr role="">
+      <tr>
         {{#each (repeat (with-default @columns 2)) as |col|}}
           {{!-- template-lint-disable require-context-role --}}
           <td role="cell" tabindex="-1" id="cell-{{col}}x{{row}}-of-{{@columns}}" data-position="({{col}}, {{row}})">

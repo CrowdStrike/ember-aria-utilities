@@ -294,7 +294,8 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
         assertActive(2, 0);
 
         await keys.ctrlLeft();
-        assertActive(1, 0);
+
+        assertActive(0, 0);
 
         await keys.ctrlLeft();
         assertActive(0, 0, `can't go more left`);
@@ -318,7 +319,7 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
       });
 
       test('when focus is on the right side', async function () {
-        await render(hbs`<Table @columns={{3}} />`);
+        await render(hbs`<Table @isMac={{false}} @columns={{3}} />`);
         await click(tableSelectors.cellsInRow(0, ':last-child'));
         assertActive(2, 0);
 
@@ -332,9 +333,6 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
         await render(hbs`<Table @columns={{3}} />`);
         await click(tableSelectors.tabbable);
         assertActive(0, 0);
-
-        await keys.ctrlRight();
-        assertActive(1, 0);
 
         await keys.ctrlRight();
         assertActive(2, 0);
@@ -422,10 +420,10 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
         assertActive(0, 2);
 
         await keys.ctrlUp();
-        assertActive(0, 1);
+        assertActive(0, 0);
 
         await keys.ctrlUp();
-        assertActive(0, 0);
+        assertActive(0);
 
         await keys.ctrlUp();
         assertActive(0, `can't go up anymore`);
@@ -480,9 +478,6 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
         assertActive(0, 0);
 
         await keys.ctrlDown();
-        assertActive(0, 1);
-
-        await keys.ctrlDown();
         assertActive(0, 2);
 
         await keys.ctrlDown();
@@ -493,12 +488,6 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
         await render(hbs`<Table @rows={{3}} />`);
         await click(tableSelectors.firstHeaderCell);
         assertActive(0);
-
-        await keys.ctrlDown();
-        assertActive(0, 0);
-
-        await keys.ctrlDown();
-        assertActive(0, 1);
 
         await keys.ctrlDown();
         assertActive(0, 2);
