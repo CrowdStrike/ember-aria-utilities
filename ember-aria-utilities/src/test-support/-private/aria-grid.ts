@@ -65,7 +65,7 @@ const tableSelectors = {
 
   firstHeaderCell: `tr:first-child th:first-child`,
   lastHeaderCell: `tr:first-child th:last-child`,
-  firstCell: `tobdy tr [role="cell"]:first-child, tbody tr td:first-child`,
+  firstCell: `tbody tr [role="cell"]:first-child, tbody tr td:first-child`,
   bottomLeft: `tbody tr:last-child [role="cell"]:first-child, tr:last-child td:first-child`,
 
   cellsInRow(n: number, append?: string) {
