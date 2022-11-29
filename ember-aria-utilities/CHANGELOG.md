@@ -1,3 +1,31 @@
+# [2.3.0](https://github.com/CrowdStrike/ember-aria/compare/v2.2.1...v2.3.0) (2022-11-29)
+
+
+### Bug Fixes
+
+* assertion to show correct amount of rows ([b848cda](https://github.com/CrowdStrike/ember-aria/commit/b848cda9239d6b34e44859f63170b3269a6cfeb8))
+* cell selectors for tbody only ([093030c](https://github.com/CrowdStrike/ember-aria/commit/093030cffa719c1800ab0a42c8546093767be58c))
+* change new components to colocated components ([2ceda16](https://github.com/CrowdStrike/ember-aria/commit/2ceda16777e6aa10ca2a1a200533c4e2730f5406))
+* change port for docs, so docs and tests can be run at the same time ([17371dc](https://github.com/CrowdStrike/ember-aria/commit/17371dcfa8e7b1888298d9da6cc63c6b1a821854))
+* formatting on sample data ([b2dcd7c](https://github.com/CrowdStrike/ember-aria/commit/b2dcd7c6b873f4b08302fd97fe8d2fe26dbc785a))
+* get table-tests in line with original grid tests ([aa9f894](https://github.com/CrowdStrike/ember-aria/commit/aa9f894b860d8589cb980f1349b3c946c3b40cf1))
+* indentation in table template ([69f5315](https://github.com/CrowdStrike/ember-aria/commit/69f53153b4c26263ca14794aff29352b1a6e431b))
+* make sure row operations runs at least once ([35d1457](https://github.com/CrowdStrike/ember-aria/commit/35d14579a6bd040d30deb5b96b0ee51c8fa60c01))
+* typo in firstCell selector ([10ac4b8](https://github.com/CrowdStrike/ember-aria/commit/10ac4b8e54c7dad46467369584c19b25cc355ec0))
+* update aria-grid selectors, MutationObserver logic ([d2a095b](https://github.com/CrowdStrike/ember-aria/commit/d2a095b601da51c095cf3b09b0ad8878fc941369))
+* update aria-grid test and add related table test ([42e383e](https://github.com/CrowdStrike/ember-aria/commit/42e383e09afda9403c5ae3fd6b6a4050225e1b7b))
+* update docs package json to use local package for ember-aria-utilities ([3239272](https://github.com/CrowdStrike/ember-aria/commit/3239272e03557c4e12165663dfff715e24a523c2))
+* update table template in the test-app ([c116bf2](https://github.com/CrowdStrike/ember-aria/commit/c116bf20faea42f20fd9c7eaacc991bf5fa7574d))
+* update tableSelectors ([f5724bc](https://github.com/CrowdStrike/ember-aria/commit/f5724bc22b98cd64ac823eae1fc7ff1fffc8b01d))
+* updating tests ([b8838ee](https://github.com/CrowdStrike/ember-aria/commit/b8838ee1c94c35d3cbfb44a7b3d8ebec8bd05852))
+
+
+### Features
+
+* Handle rows loading asynchronously, adding table selectors ([fe74ae8](https://github.com/CrowdStrike/ember-aria/commit/fe74ae8e67254c4506007ee196ab7aff2c536f44)), closes [embroider-build/embroider#1261](https://github.com/embroider-build/embroider/issues/1261)
+* modify node selectors to work with table tags ([5f09b43](https://github.com/CrowdStrike/ember-aria/commit/5f09b434337cb8ab2773acf4bb1f086b5b21dd94))
+* modify selectors to work for table tags ([04fcbc0](https://github.com/CrowdStrike/ember-aria/commit/04fcbc0f6c3ed4dbb694602d00d262884e8a4c60))
+
 ## [2.2.1](https://github.com/CrowdStrike/ember-aria/compare/v2.2.0...v2.2.1) (2022-10-26)
 
 
