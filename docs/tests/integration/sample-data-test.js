@@ -35,7 +35,7 @@ module('Integration | Component | sample-data', function (hooks) {
     assert.dom('[data-test-selector=total-columns]').doesNotContainText();
     assert.dom('[data-test-selector=total-rows]').doesNotContainText();
 
-    await new Promise(resolve => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 5000));
 
     assert.dom('[data-test-selector=column]').hasAnyText();
     assert.dom('[data-test-selector=row]').hasAnyText();

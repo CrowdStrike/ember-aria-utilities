@@ -13,6 +13,10 @@ Router.map(function () {
   this.route('examples', function () {
     this.route('aria-grid', function () {
       this.route('nested');
+      this.route('nested-async');
+      this.route('big-grid-async');
+      this.route('table');
+      this.route('table-async');
     });
   });
 });

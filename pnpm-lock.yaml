@@ -41,7 +41,7 @@ importers:
       '@nullvoxpopuli/eslint-configs': ^2.2.20
       babel-eslint: ^10.1.0
       broccoli-asset-rev: ^3.0.0
-      ember-aria-utilities: '*'
+      ember-aria-utilities: workspace:*
       ember-auto-import: ^2.0.0
       ember-cli: ^4.4.0
       ember-cli-app-version: ^5.0.0
@@ -76,7 +76,7 @@ importers:
     dependencies:
       '@docfy/core': 0.5.0
       '@docfy/ember': 0.5.0
-      ember-aria-utilities: 2.1.0_qqaziklc5er4peo25tjzujjq5m
+      ember-aria-utilities: file:ember-aria-utilities_qqaziklc5er4peo25tjzujjq5m
       ember-functions-as-helper-polyfill: 2.1.1_ember-source@4.4.0
       ember-resources: 4.8.2_be4dwkyl2w4uzwgkeuo2tmpz34
       faker: 5.5.3
@@ -120,6 +120,9 @@ importers:
       qunit-dom: 2.0.0
       typescript: 4.5.2
       webpack: 5.72.1
+    dependenciesMeta:
+      ember-aria-utilities:
+        injected: true
 
   ember-aria-utilities:
     specifiers:
@@ -6546,7 +6549,7 @@ packages:
       functional-red-black-tree: 1.0.1
       ignore: 5.2.0
       regexpp: 3.2.0
-      semver: 7.3.7
+      semver: 7.3.8
       tsutils: 3.21.0_typescript@4.5.2
       typescript: 4.5.2
     transitivePeerDependencies:
@@ -6573,7 +6576,7 @@ packages:
       functional-red-black-tree: 1.0.1
       ignore: 5.2.0
       regexpp: 3.2.0
-      semver: 7.3.7
+      semver: 7.3.8
       tsutils: 3.21.0_typescript@4.5.5
       typescript: 4.5.5
     transitivePeerDependencies:
@@ -10989,26 +10992,6 @@ packages:
     resolution: {integrity: sha512-MxhBlw2nGDmGYE2267RKXrjjKLmdrzG5J5MtLwil+l3jpfvWgi+uh9m+Je/rQgwo3mYjFgMGApsl4VaGZVdbiw==}
     engines: {node: 12.* || >= 14}
     dev: true
-
-  /ember-aria-utilities/2.1.0_qqaziklc5er4peo25tjzujjq5m:
-    resolution: {integrity: sha512-Lr3OUk78kr5KmywWaYsBOVElB9bnZtqNvE1JZ1C5XFtB07thAJi5ZAm00KdRqzE8EccWADNBME3I6OmnWGa42A==}
-    engines: {node: 12.* || 14.* || >= 16}
-    peerDependencies:
-      '@ember/test-helpers': ^2.4.0
-      ember-source: '>= 3.24.0'
-    peerDependenciesMeta:
-      ember-source:
-        optional: true
-    dependencies:
-      '@ember/test-helpers': 2.8.1_5dg2zfxodhqv6taq4iskx5raf4
-      '@embroider/addon-shim': 1.7.1
-      '@embroider/macros': 1.9.0
-      ember-modifier: 3.2.7_@babel+core@7.18.2
-      ember-source: 4.4.0_w2i5cy6pptznn7rmavsgpnxasa
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-    dev: false
 
   /ember-auto-import/1.12.2:
     resolution: {integrity: sha512-gLqML2k77AuUiXxWNon1FSzuG1DV7PEPpCLCU5aJvf6fdL6rmFfElsZRh+8ELEB/qP9dT+LHjNEunVzd2dYc8A==}
@@ -21320,7 +21303,7 @@ packages:
     resolution: {directory: ember-aria-utilities, type: directory}
     id: file:ember-aria-utilities
     name: ember-aria-utilities
-    version: 2.0.5
+    version: 2.2.0
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
       '@ember/test-helpers': ^2.4.0
@@ -21334,6 +21317,29 @@ packages:
       '@embroider/macros': 1.9.0
       ember-modifier: 3.2.7_@babel+core@7.19.6
       ember-source: 4.8.0_qgwbsqca2eub3f4vd3hrm6flxy
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+    dev: false
+
+  file:ember-aria-utilities_qqaziklc5er4peo25tjzujjq5m:
+    resolution: {directory: ember-aria-utilities, type: directory}
+    id: file:ember-aria-utilities
+    name: ember-aria-utilities
+    version: 2.2.0
+    engines: {node: 12.* || 14.* || >= 16}
+    peerDependencies:
+      '@ember/test-helpers': ^2.4.0
+      ember-source: '>= 3.24.0'
+    peerDependenciesMeta:
+      ember-source:
+        optional: true
+    dependencies:
+      '@ember/test-helpers': 2.8.1_5dg2zfxodhqv6taq4iskx5raf4
+      '@embroider/addon-shim': 1.7.1
+      '@embroider/macros': 1.9.0
+      ember-modifier: 3.2.7_@babel+core@7.18.2
+      ember-source: 4.4.0_w2i5cy6pptznn7rmavsgpnxasa
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color

@@ -85,6 +85,11 @@ export function focusSurroundGridOf(grid?: Element) {
   focus(focusable);
 }
 
+/**
+ * @description Loops through all the cells in a grid, and adds tabIndex="-1" to those cells missing a tabindex attribute
+ *
+ * @param {Element} grid - an element with role="grid" or {{aria-grid}} on it
+ */
 export function restoreTabIndexes(grid: Element) {
   let unfocusables = cellRoles.map((role) => `[role="${role}"]:not([tabindex])`).join(', ');
   let cells = grid.querySelectorAll(unfocusables);
@@ -127,15 +132,17 @@ export function firstCellOfColumn(current: Element) {
   if (!grid) return;
 
   let index = cells.indexOf(current);
-  let topRow: Nullable<Element> = closestRow(grid.querySelector('[role="row"] [role="cell"]'));
+  let topRow: Nullable<Element> = closestRow(
+    grid.querySelector('[role="row"] [role="cell"], tr td')
+  );
 
-  let firstRow = grid.querySelector('[role="row"]');
+  let firstRow = grid.querySelector('[role="row"], tr');
 
   // We can't go first-er
   if (row === firstRow) return;
 
   if (row === topRow) {
-    topRow = closestRow(grid.querySelector('[role="row"] [role="columnheader"]'));
+    topRow = closestRow(grid.querySelector('[role="row"] [role="columnheader"], thead tr th'));
   }
 
   if (!topRow) return;
@@ -156,12 +163,12 @@ export function lastCellOfColumn(current: Element) {
   if (!grid) return;
 
   let index = cells.indexOf(current);
-  let bottomRow = grid.querySelector('[role="row"]:last-child');
+  let bottomRow = grid.querySelector('[role="row"]:last-child, tbody tr:last-child');
 
   if (!bottomRow) return;
 
-  let topCells = bottomRow.querySelectorAll(cellSelector);
-  let cell = topCells[index];
+  let bottomCells = bottomRow.querySelectorAll(cellSelector);
+  let cell = bottomCells[index];
 
   focus(cell);
 }
@@ -256,6 +263,7 @@ export function nextCell(current: Element) {
   if (!cells) return;
 
   let currentIndex = cells.indexOf(current);
+
   let nextCell = cells[currentIndex + 1];
 
   focus(nextCell);

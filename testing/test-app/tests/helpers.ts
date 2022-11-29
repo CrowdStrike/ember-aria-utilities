@@ -39,6 +39,7 @@ const Cell = setComponentTemplate(
 export class Grid extends Component {
   Cell = Cell;
 }
+
 setComponentTemplate(
   hbs`
     <div {{aria-grid (with-default @isMac false)}} role="grid" ...attributes>
