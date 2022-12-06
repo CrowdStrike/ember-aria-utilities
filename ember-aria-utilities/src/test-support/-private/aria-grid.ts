@@ -1,4 +1,5 @@
 import { assert } from '@ember/debug';
+import { deprecate } from '@ember/debug';
 import { triggerKeyEvent } from '@ember/test-helpers';
 
 import { DOWN, END, ENTER, ESCAPE, F2, HOME, LEFT, RIGHT, UP } from '../../modifiers/-private/keys';
@@ -150,8 +151,23 @@ const keys = {
   f2: triggerable(F2),
 } as const;
 
+let notified = false;
+
 export const ariaGrid = {
   keys,
-  selectors,
+  get selectors() {
+    if (!notified) {
+      deprecate('selectors are being deprecated, use gridSelectors instead', false, {
+        id: '@crowdstrike/ember-aria-utilities/test-support',
+        until: '3.5.0',
+        for: '@crowdstrike/ember-aria-utilities',
+        since: { available: '2.3.1' },
+      });
+      notified = true;
+    }
+
+    return selectors;
+  },
   tableSelectors,
+  gridSelectors: selectors,
 };
