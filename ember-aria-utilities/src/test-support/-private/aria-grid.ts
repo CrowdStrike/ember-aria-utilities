@@ -1,4 +1,5 @@
 import { assert } from '@ember/debug';
+import { deprecate } from '@ember/debug';
 import { triggerKeyEvent } from '@ember/test-helpers';
 
 import { DOWN, END, ENTER, ESCAPE, F2, HOME, LEFT, RIGHT, UP } from '../../modifiers/-private/keys';
@@ -7,7 +8,7 @@ import { DOWN, END, ENTER, ESCAPE, F2, HOME, LEFT, RIGHT, UP } from '../../modif
  *  NOTE: nth-child is 1-indexed
  *        we like math / graphs, so we convert to 0-indexed
  */
-const gridSelectors = {
+const selectors = {
   tabbable: '[tabindex="0"]',
   untabbable: '[tabindex="-1"]',
   cell: '[role="cell"]',
@@ -21,37 +22,37 @@ const gridSelectors = {
   bottomLeft: `[role="row"]:last-child [role="cell"]:first-child`,
 
   cellsInRow(n: number, append?: string) {
-    return `${gridSelectors.rowAt(n)} ${gridSelectors.cell}${append}`;
+    return `${selectors.rowAt(n)} ${selectors.cell}${append}`;
   },
 
   /**
    * To account for nested grids
    */
   rowsOf(grid: Element) {
-    let allRows = grid.querySelectorAll(gridSelectors.row);
+    let allRows = grid.querySelectorAll(selectors.row);
 
-    return [...allRows].filter((row) => row.closest(gridSelectors.grid) === grid);
+    return [...allRows].filter((row) => row.closest(selectors.grid) === grid);
   },
 
   rowAt(y?: number) {
     if (y === undefined) {
-      return `${gridSelectors.row}:first-child`;
+      return `${selectors.row}:first-child`;
     }
 
     // goal: (0, 0) is the first non-header cell
     // header is nth: 1 (we want it to be undefined)
     // first row is nth: 2 (we want it to be 0)
-    return `${gridSelectors.row}:nth-child(${y + 2})`;
+    return `${selectors.row}:nth-child(${y + 2})`;
   },
 
   cellAt(x: number, y?: number) {
-    let row = gridSelectors.rowAt(y);
+    let row = selectors.rowAt(y);
 
     if (y === undefined) {
-      return `${row} ${gridSelectors.header}:nth-child(${x + 1})`;
+      return `${row} ${selectors.header}:nth-child(${x + 1})`;
     }
 
-    return `${row} ${gridSelectors.cell}:nth-child(${x + 1})`;
+    return `${row} ${selectors.cell}:nth-child(${x + 1})`;
   },
 } as const;
 
@@ -111,7 +112,7 @@ function triggerable(key: string, options?: Parameters<typeof triggerKeyEvent>[3
    *
    */
   return (parent = '') => {
-    let target = document.querySelector(`${root} ${parent} ${gridSelectors.grid}`);
+    let target = document.querySelector(`${root} ${parent} ${selectors.grid}`);
 
     assert(`Target for ${key} not found`, target);
 
@@ -150,8 +151,23 @@ const keys = {
   f2: triggerable(F2),
 } as const;
 
+let notified = false;
+
 export const ariaGrid = {
   keys,
-  gridSelectors,
+  get selectors() {
+    if (!notified) {
+      deprecate('selectors are being deprecated, use gridSelectors instead', false, {
+        id: '@crowdstrike/ember-aria-utilities/test-support',
+        until: '3.5.0',
+        for: '@crowdstrike/ember-aria-utilities',
+        since: { available: '2.3.1' },
+      });
+      notified = true;
+    }
+
+    return selectors;
+  },
   tableSelectors,
+  gridSelectors: selectors,
 };

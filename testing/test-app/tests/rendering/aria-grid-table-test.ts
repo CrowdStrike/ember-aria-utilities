@@ -17,7 +17,7 @@ import { ariaGrid } from 'ember-aria-utilities/test-support';
 
 import { repeat, withDefault } from '../helpers';
 
-const { keys, gridSelectors, tableSelectors } = ariaGrid;
+const { keys, selectors, tableSelectors } = ariaGrid;
 
 const debugAssert: typeof assert = assert;
 
@@ -219,7 +219,7 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
 
         focus('#before');
 
-        let first = find(gridSelectors.cell);
+        let first = find(selectors.cell);
 
         assert.notEqual(document.activeElement, first);
 
@@ -236,7 +236,7 @@ module('{{aria-grid}}: <Table /> tests', function (hooks) {
           <button id='after'>after</button>
         `);
 
-        let others = findAll(gridSelectors.untabbable);
+        let others = findAll(selectors.untabbable);
         let last = others[others.length - 1];
 
         debugAssert(`Last untabbable not available`, last);
