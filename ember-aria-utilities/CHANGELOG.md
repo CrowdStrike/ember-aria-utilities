@@ -1,3 +1,12 @@
+## [2.3.1](https://github.com/CrowdStrike/ember-aria/compare/v2.3.0...v2.3.1) (2022-12-06)
+
+
+### Bug Fixes
+
+* add back in selectors, with deprecation warning ([879714a](https://github.com/CrowdStrike/ember-aria/commit/879714a4721107c03c46d51fb8129e7a61ed8619))
+* revert gridSelectors to selectors ([cdd74d6](https://github.com/CrowdStrike/ember-aria/commit/cdd74d6be8080085e11ca56f6ace02ae12945ef7))
+* revert gridSelectors to selectors, add deprecation warning ([8dc9721](https://github.com/CrowdStrike/ember-aria/commit/8dc9721fdcb4a09688af90169b3ee6673bb6b4b3))
+
 # [2.3.0](https://github.com/CrowdStrike/ember-aria/compare/v2.2.1...v2.3.0) (2022-11-29)
 
 
