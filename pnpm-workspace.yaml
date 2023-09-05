@@ -2,3 +2,4 @@ packages:
   - "ember-aria-utilities"
   - "docs"
   - "testing/*"
+  - "internal/*"
