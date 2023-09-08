@@ -188,5 +188,36 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  publishDocs:
+    name: Publish Docs to Cloudflare Pages
+    runs-on: ubuntu-latest
+    needs:
+      - install_dependencies
+    permissions:
+      contents: read
+      deployments: write
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/pnpm
+      - run: pnpm build:docs
+      - name: Publish to Cloudflare Pages
+        id: publishStep
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.UX_OSS_CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.UX_OSS_CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ember-toucan-core
+          directory: ./docs-app/dist
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+      - uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |+
+            ## Preview URLs
+            Env: ${{ steps.publishStep.outputs.environment }}
+            Docs: ${{ steps.publishStep.outputs.url }}
+
 
 
