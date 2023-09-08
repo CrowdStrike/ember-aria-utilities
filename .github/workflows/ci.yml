@@ -85,7 +85,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/pnpm
-      - uses: ./.github/actions/download-built-package
       - name: 'Change TS to ${{ matrix.typescript-scenario }}'
         run: 'pnpm add --save-dev ${{ matrix.typescript-scenario}}'
         working-directory: ./testing/test-app
@@ -106,7 +105,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/pnpm
-      - uses: ./.github/actions/download-built-package
       - run: pnpm test 
 
   floating_tests:
@@ -119,7 +117,6 @@ jobs:
       - uses: ./.github/actions/pnpm
       - name: Install Dependencies (without lockfile)
         run: rm pnpm-lock.yaml && pnpm install
-      - uses: ./.github/actions/download-built-package
       - run: pnpm --filter test-app test:ember
 
 
@@ -152,7 +149,6 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/pnpm
-      - uses: ./.github/actions/download-built-package
       - name: Run Tests
         working-directory: ./testing/test-app
         run: node_modules/.bin/ember try:one ${{matrix.try-scenario}} --skip-cleanup --- pnpm turbo test 
