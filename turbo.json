@@ -10,7 +10,7 @@
     "lint:fix": {},
     "build": {
       "dependsOn": [
-        "_synchPnpm"
+        "_syncPnpm"
       ]
     },
     "start": {

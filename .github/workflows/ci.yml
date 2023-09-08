@@ -89,7 +89,7 @@ jobs:
         run: 'pnpm add --save-dev ${{ matrix.typescript-scenario}}'
         working-directory: ./testing/test-app
       - name: 'Type checking'
-        run: pnpm turbo typecheck
+        run: pnpm turbo run typecheck
 
 
   default_tests:
@@ -105,7 +105,7 @@ jobs:
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: ./.github/actions/pnpm
-      - run: pnpm test 
+      - run: pnpm --filter test-app test:ember
 
   floating_tests:
     name: Floating Deps Test
@@ -151,7 +151,7 @@ jobs:
       - uses: ./.github/actions/pnpm
       - name: Run Tests
         working-directory: ./testing/test-app
-        run: node_modules/.bin/ember try:one ${{matrix.try-scenario}} --skip-cleanup --- pnpm turbo test 
+        run: node_modules/.bin/ember try:one ${{matrix.try-scenario}} --skip-cleanup --- pnpm turbo run test 
 
 
 
@@ -205,8 +205,8 @@ jobs:
         with:
           apiToken: ${{ secrets.UX_OSS_CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.UX_OSS_CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ember-toucan-core
-          directory: ./docs-app/dist
+          projectName: ember-aria-utilities 
+          directory: ./docs/dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
       - uses: marocchino/sticky-pull-request-comment@v2
         with:

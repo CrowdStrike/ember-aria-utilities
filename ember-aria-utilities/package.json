@@ -46,7 +46,7 @@
     "lint:js:fix": "eslint . --fix",
     "test": "echo 'Addon does not have tests, run tests in test-app'",
     "prepublishOnly": "pnpm run build",
-    "typecheck": "pnpm tsc -v; pnpm glint --version; pnpm lint:types",
+    "typecheck": "pnpm tsc -v; pnpm tsc --build",
     "_syncPnpm": "pnpm sync-pnpm"
   },
   "dependencies": {

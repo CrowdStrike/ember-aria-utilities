@@ -25,7 +25,7 @@
     "embroider:test": "EMBROIDER_TEST_SETUP_FORCE=embroider EMBROIDER_TEST_SETUP_OPTIONS=optimized ember test",
     "try:embroider:start": "ember try:one embroider-optimized --- ember s",
     "try:embroider:test": "ember try:one 'ember-lts-4.4 + embroider-optimized'",
-    "typecheck": "pnpm tsc -v; pnpm glint --version; pnpm lint:types",
+    "typecheck": "pnpm tsc -v; pnpm tsc --build",
     "_syncPnpm": "pnpm sync-pnpm"
   },
   "dependencies": {
