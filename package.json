@@ -13,7 +13,8 @@
     "ci:update": "npx ember-ci-update",
     "lint": "pnpm turbo run lint",
     "lint:fix": "pnpm turbo run lint:fix",
-    "lint:js": "pnpm turbo run lint:js"
+    "lint:js": "pnpm turbo run lint:js",
+    "test": "pnpm run --filter=test-app test"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.1",

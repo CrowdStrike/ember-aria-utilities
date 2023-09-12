@@ -151,7 +151,7 @@ jobs:
       - uses: ./.github/actions/pnpm
       - name: Run Tests
         working-directory: ./testing/test-app
-        run: node_modules/.bin/ember try:one ${{matrix.try-scenario}} --skip-cleanup --- pnpm turbo run test 
+        run: node_modules/.bin/ember try:one ${{matrix.try-scenario}} --skip-cleanup --- pnpm run --filter test-app test 
 
 
 
