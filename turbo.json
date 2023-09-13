@@ -3,12 +3,33 @@
   "pipeline": {
     "lint:js": {},
     "lint:hbs": {},
-    "lint": {},
+    "lint": {
+      "outputs": [],
+      "dependsOn": ["_syncPnpm"]
+    },
     "lint:fix": {},
     "build": {
       "dependsOn": [
-        "^build"
+        "_syncPnpm"
       ]
+    },
+    "start": {
+      "dependsOn": ["_syncPnpm"],
+      "outputs": [],
+      "cache": false,
+      "persistent": true
+    },
+    "test": {
+      "dependsOn": ["_syncPnpm"],
+      "env": ["EMBER_TRY_CURRENT_SCENARIO", "EMBROIDER_TEST_SETUP_OPTIONS"]
+    },
+    "typecheck": {
+      "outputs": [],
+      "dependsOn": ["_syncPnpm"]
+    },
+    "_syncPnpm": {
+      "dependsOn": ["^build"],
+      "cache": false
     }
   }
 }
