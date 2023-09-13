@@ -139,8 +139,8 @@ jobs:
           - ember-canary
           - "ember-release + embroider-safe"
           - "ember-release + embroider-optimized"
-          - "ember-lts-3.28 + embroider-optimized"
-          - "ember-lts-4.4 + embroider-optimized"
+          - "'ember-lts-3.28 + embroider-optimized'"
+          - "'ember-lts-4.4 + embroider-optimized'"
 
     steps:
       - uses: actions/checkout@v3
