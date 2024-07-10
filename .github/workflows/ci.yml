@@ -8,8 +8,8 @@ on:
   pull_request: {}
 
 concurrency:
-   group: ci-${{ github.head_ref || github.ref }}
-   cancel-in-progress: true
+  group: ci-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 env:
   CI: true
@@ -20,9 +20,8 @@ jobs:
     name: Install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/pnpm
-
 
   eslint:
     name: ESLint {{ matrix.path }}
@@ -35,28 +34,23 @@ jobs:
           - ./ember-aria-utilities
           - ./testing/test-app
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/pnpm
       - name: Lint
         run: pnpm eslint .
         working-directory: ${{ matrix.path }}
 
-
-
-
-
   commits:
     name: Commit Messages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - uses: ./.github/actions/pnpm
       - uses: wagoid/commitlint-github-action@v5.2.0
         with:
-          configFile: 'commitlint.config.cjs'
-
+          configFile: "commitlint.config.cjs"
 
   build:
     name: Build Tests
@@ -64,13 +58,12 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/pnpm
       - uses: ./.github/actions/assert-build
 
-
   typecheck:
-    name: '${{ matrix.typescript-scenario }}'
+    name: "${{ matrix.typescript-scenario }}"
     runs-on: ubuntu-latest
     timeout-minutes: 2
     needs: [build]
@@ -85,19 +78,16 @@ jobs:
           - typescript@next
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/pnpm
       - uses: ./.github/actions/download-built-package
-      - name: 'Change TS to ${{ matrix.typescript-scenario }}'
-        run: 'pnpm add --save-dev ${{ matrix.typescript-scenario}}'
+      - name: "Change TS to ${{ matrix.typescript-scenario }}"
+        run: "pnpm add --save-dev ${{ matrix.typescript-scenario}}"
         working-directory: ./testing/test-app
-      - name: 'Type checking'
+      - name: "Type checking"
         run: |
           pnpm --filter test-app exec tsc -v;
           pnpm --filter test-app exec tsc --build;
-
-  
-
 
   default_tests:
     name: Default Tests
@@ -105,7 +95,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/pnpm
       - uses: ./.github/actions/download-built-package
       - run: pnpm --filter test-app test:ember
@@ -116,13 +106,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/pnpm
       - name: Install Dependencies (without lockfile)
         run: rm pnpm-lock.yaml && pnpm install
       - uses: ./.github/actions/download-built-package
       - run: pnpm --filter test-app test:ember
-
 
   try_scenarios:
     name: ${{ matrix.try-scenario }}
@@ -147,7 +136,7 @@ jobs:
           - "ember-lts-4.4 + embroider-optimized"
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: ./.github/actions/pnpm
       - uses: ./.github/actions/download-built-package
       - name: Run Tests
@@ -155,9 +144,6 @@ jobs:
         run: >-
           node_modules/.bin/ember try:one "${{ matrix.try-scenario }}"
           --skip-cleanup
-
-
-
 
   release:
     name: Release
@@ -171,7 +157,7 @@ jobs:
       - try_scenarios
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - uses: ./.github/actions/pnpm
@@ -182,6 +168,3 @@ jobs:
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
