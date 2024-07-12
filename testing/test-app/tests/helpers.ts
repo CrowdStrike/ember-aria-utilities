@@ -22,12 +22,8 @@ class Toggle extends Resource<Signature> {
   toggle = () => (this.state = !this.state);
 }
 
-export const repeat = helper(([times]: [number]) =>
-  Array.from({ length: times }, (_, i) => i)
-);
-export const withDefault = helper(
-  ([passthrough, fallback]) => passthrough ?? fallback
-);
+export const repeat = helper(([times]: [number]) => Array.from({ length: times }, (_, i) => i));
+export const withDefault = helper(([passthrough, fallback]) => passthrough ?? fallback);
 
 const Cell = setComponentTemplate(
   hbs`
