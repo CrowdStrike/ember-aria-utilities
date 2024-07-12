@@ -50,7 +50,7 @@
   "dependencies": {
     "@ember/test-helpers": "^2.4.0",
     "@embroider/addon-shim": "^1.7.1",
-    "@embroider/macros": "^1.7.1",
+    "@embroider/macros": "^1.16.5",
     "ember-modifier": "^3.2.7"
   },
   "peerDependencies": {
