@@ -27,7 +27,6 @@
     "try:embroider:test": "ember try:one 'ember-lts-4.4 + embroider-optimized'"
   },
   "dependencies": {
-    "@ember/test-helpers": "^2.4.2",
     "@ember/test-waiters": "^3.0.2",
     "ember-aria-utilities": "workspace:*",
     "ember-functions-as-helper-polyfill": "^2.1.1",
@@ -42,6 +41,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@ember/optional-features": "^2.0.0",
+    "@ember/test-helpers": "3.3.0",
     "@embroider/compat": "^1.9.0",
     "@embroider/core": "^1.9.0",
     "@embroider/test-setup": "^1.8.3",
@@ -90,7 +90,7 @@
     "ember-disable-prototype-extensions": "^1.1.3",
     "ember-load-initializers": "^2.1.2",
     "ember-page-title": "^7.0.0",
-    "ember-qunit": "^6.0.0",
+    "ember-qunit": "8.1.0",
     "ember-resolver": "^8.0.2",
     "ember-source-channel-url": "^3.0.0",
     "ember-template-lint": "^4.16.1",

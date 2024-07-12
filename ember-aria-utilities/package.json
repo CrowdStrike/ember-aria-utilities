@@ -48,13 +48,12 @@
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
-    "@ember/test-helpers": "^2.4.0",
     "@embroider/addon-shim": "^1.7.1",
     "@embroider/macros": "^1.16.5",
     "ember-modifier": "^3.2.7"
   },
   "peerDependencies": {
-    "@ember/test-helpers": "^2.4.0",
+    "@ember/test-helpers": "^3.3.0",
     "ember-source": ">= 3.24.0"
   },
   "devDependencies": {
@@ -62,6 +61,7 @@
     "@babel/plugin-proposal-class-properties": "7.17.12",
     "@babel/plugin-syntax-decorators": "7.17.12",
     "@babel/plugin-proposal-decorators": "7.18.2",
+    "@ember/test-helpers": "3.3.0",
     "@embroider/addon-dev": "1.7.1",
     "@nullvoxpopuli/eslint-configs": "2.2.20",
     "@semantic-release/changelog": "^6.0.1",
