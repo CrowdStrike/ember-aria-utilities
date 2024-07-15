@@ -48,9 +48,6 @@ importers:
       ember-aria-utilities:
         specifier: workspace:*
         version: file:ember-aria-utilities(@babel/core@7.18.2)(@ember/test-helpers@3.3.0)(ember-source@4.12.4)
-      ember-functions-as-helper-polyfill:
-        specifier: ^2.1.1
-        version: 2.1.1(ember-source@4.12.4)
       ember-resources:
         specifier: ^4.8.0
         version: 4.8.2(@glimmer/tracking@1.1.2)(ember-source@4.12.4)
@@ -287,9 +284,6 @@ importers:
       ember-aria-utilities:
         specifier: workspace:*
         version: file:ember-aria-utilities(@babel/core@7.19.6)(@ember/test-helpers@3.3.0)(@glint/template@1.4.0)(ember-source@4.12.4)
-      ember-functions-as-helper-polyfill:
-        specifier: ^2.1.1
-        version: 2.1.1(ember-source@4.12.4)
       ember-resources:
         specifier: ^5.4.0
         version: 5.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.4.0)(ember-source@4.12.4)
@@ -6643,7 +6637,7 @@ packages:
     resolution: {integrity: sha512-UrhDbopLI3jB0MqV14y8yji2IuPNmeDrtT1PRYJL4CThLHrRkfeYyFvxqvrxWxn0wXKjbbjfH1gOe7BU57QrLQ==}
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.19.6)
-      '@types/ember__object': 4.0.12(@babel/core@7.19.6)
+      '@types/ember__object': 4.0.12(@babel/core@7.18.2)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -6663,7 +6657,7 @@ packages:
     resolution: {integrity: sha512-m72EtmBN/RxOChXqRsyOg4RR5+AiB4LQ8s1CEKNYAfvANt18m4hjqxtA7QZYLTq2ZjEVJGpdMsrdDuONWjwRSQ==}
     dependencies:
       '@types/ember': 4.0.11(@babel/core@7.19.6)
-      '@types/ember__object': 4.0.12(@babel/core@7.19.6)
+      '@types/ember__object': 4.0.12(@babel/core@7.18.2)
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -11934,23 +11928,6 @@ packages:
     resolution: {integrity: sha1-GWkTUhdlS14nj5/i2dTkm1cgMp4=}
     engines: {node: '>= 0.10.0'}
     dev: true
-
-  /ember-functions-as-helper-polyfill@2.1.1(ember-source@4.12.4):
-    resolution: {integrity: sha512-vZ2w9G/foohwtPm99Jos1m6bhlXyyyiJ4vhLbxyjWB4wh7bcpRzXPgCewDRrwefZQ2BwtHg3c9zvVMlI0g+o2Q==}
-    engines: {node: '>= 14.0.0'}
-    peerDependencies:
-      ember-source: ^3.25.0 || ^4.0.0
-    peerDependenciesMeta:
-      ember-source:
-        optional: true
-    dependencies:
-      ember-cli-babel: 7.26.11(supports-color@8.1.1)
-      ember-cli-typescript: 5.1.0
-      ember-cli-version-checker: 5.1.2
-      ember-source: 4.12.4(@babel/core@7.18.2)(@glimmer/component@1.1.2)(webpack@5.72.1)
-    transitivePeerDependencies:
-      - supports-color
-    dev: false
 
   /ember-get-config@1.0.4:
     resolution: {integrity: sha512-WOnf1E0ceRHWy7apnmUFbKcJm2c3KOg4rNNUKNtBFCFp770tOTwv5LAYcqV4+HootPCsQYL7oFUd/0JLiZpMeg==}
