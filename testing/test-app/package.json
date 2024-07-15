@@ -31,7 +31,7 @@
     "ember-aria-utilities": "workspace:*",
     "ember-functions-as-helper-polyfill": "^2.1.1",
     "ember-resources": "^5.4.0",
-    "ember-source": "^4.8.0"
+    "ember-source": "^4.12.0"
   },
   "dependenciesMeta": {
     "ember-aria-utilities": {
@@ -45,7 +45,7 @@
     "@embroider/test-setup": "^4.0.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@glint/template": "^0.9.6",
+    "@glint/template": "^1.4.0",
     "@nullvoxpopuli/eslint-configs": "^2.2.62",
     "@tsconfig/ember": "^1.0.1",
     "@types/ember": "^4.0.11",
