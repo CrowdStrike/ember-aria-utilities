@@ -1,31 +1,26 @@
-ember-aria-utilities
-==============================================================================
+# ember-aria-utilities
 
 [![CI](https://github.com/CrowdStrike/ember-aria/actions/workflows/ci.yml/badge.svg)](https://github.com/CrowdStrike/ember-aria/actions/workflows/ci.yml)
 [![npm version](https://badge.fury.io/js/ember-aria-utilities.svg)](https://www.npmjs.com/package/ember-aria-utilities)
 
 ARIA utilities for helping create some of the more complex ARIA design patterns. Follows https://www.w3.org/TR/wai-aria-practices/
 
+## Compatibility
 
-Compatibility
-------------------------------------------------------------------------------
-
-* ember-source v3.24 or above
-* ember-auto-import v2 or above
-* ember-cli classic build, embroider safe and optimized builds
-* typescript v4.5.2 or above
+- ember-source v4.8 or above
+- ember-auto-import v2 or above
+- ember-cli classic build, embroider safe and optimized builds
+- typescript v4.5.2 or above
 
 For testing
-* @ember/test-helpers v2.4 or above
 
+- @ember/test-helpers v2.4 or above
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install ember-aria-utilities
 ```
-
 
 ## `{{aria-grid}}`
 
@@ -77,9 +72,10 @@ This example allows you to try out the keyboard interactions as outlined in [§K
   <td>
   Moves focus to the outer most cell in the pressed direction. If there is no adjacent cell in the pressed direction focus doesn’t move.
 
-  Note: If focus is on a cell inside the “body” and Ctrl+Up Arrow is pressed. Focus will move move to the top most cell in the “body”. A second press is needed to move into the column headers.
+Note: If focus is on a cell inside the “body” and Ctrl+Up Arrow is pressed. Focus will move move to the top most cell in the “body”. A second press is needed to move into the column headers.
 
-  Note: There is no such difference between a “data cell” and a “row header”.
+Note: There is no such difference between a “data cell” and a “row header”.
+
   </td>
 </tr>
 <tr>
@@ -156,13 +152,10 @@ Future updates will allow for selection of cells/rows. Also included is the foll
 </div>
 ```
 
-Contributing
-------------------------------------------------------------------------------
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
-
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
