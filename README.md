@@ -14,7 +14,7 @@ ARIA utilities for helping create some of the more complex ARIA design patterns.
 
 For testing
 
-- @ember/test-helpers v2.4 or above
+- @ember/test-helpers v3.3 or above
 
 ## Installation
 
