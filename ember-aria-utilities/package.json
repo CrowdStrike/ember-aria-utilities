@@ -54,7 +54,7 @@
   },
   "peerDependencies": {
     "@ember/test-helpers": "^3.3.0",
-    "ember-source": ">= 3.24.0"
+    "ember-source": ">= 4.8.0"
   },
   "devDependencies": {
     "@babel/core": "7.18.2",
