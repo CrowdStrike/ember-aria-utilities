@@ -123,17 +123,15 @@ jobs:
       fail-fast: false
       matrix:
         try-scenario:
-          - ember-3.24
-          - ember-3.28
-          - ember-4.0.0
-          - ember-4.4
+          - ember-4.8
+          - ember-4.12
+          - ember-5.4
+          - ember-5.8
           - ember-release
           - ember-beta
           - ember-canary
-          - "ember-release + embroider-safe"
-          - "ember-release + embroider-optimized"
-          - "ember-lts-3.28 + embroider-optimized"
-          - "ember-lts-4.4 + embroider-optimized"
+          - embroider-safe
+          - embroider-optimized
 
     steps:
       - uses: actions/checkout@v4

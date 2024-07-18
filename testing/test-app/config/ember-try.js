@@ -5,7 +5,6 @@ const { embroiderSafe, embroiderOptimized } = require('@embroider/test-setup');
 
 module.exports = async function () {
   let releaseVersion = await getChannelURL('release');
-  let embroiderVersion = '^1.9.0';
 
   return {
     usePnpm: true,
@@ -35,10 +34,34 @@ module.exports = async function () {
         },
       },
       {
-        name: 'ember-4.4',
+        name: 'ember-4.8',
         npm: {
           devDependencies: {
-            'ember-source': '~4.4.0',
+            'ember-source': '~4.8.0',
+          },
+        },
+      },
+      {
+        name: 'ember-4.12',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.12.0',
+          },
+        },
+      },
+      {
+        name: 'ember-5.4',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.4.0',
+          },
+        },
+      },
+      {
+        name: 'ember-5.8',
+        npm: {
+          devDependencies: {
+            'ember-source': '~5.8.0',
           },
         },
       },
@@ -66,50 +89,8 @@ module.exports = async function () {
           },
         },
       },
-      embroiderSafe({
-        name: 'ember-release + embroider-safe',
-        npm: {
-          devDependencies: {
-            '@embroider/core': embroiderVersion,
-            '@embroider/webpack': embroiderVersion,
-            '@embroider/compat': embroiderVersion,
-            'ember-source': releaseVersion,
-          },
-        },
-      }),
-      embroiderOptimized({
-        name: 'ember-release + embroider-optimized',
-        npm: {
-          devDependencies: {
-            '@embroider/core': embroiderVersion,
-            '@embroider/webpack': embroiderVersion,
-            '@embroider/compat': embroiderVersion,
-            'ember-source': releaseVersion,
-          },
-        },
-      }),
-      embroiderOptimized({
-        name: 'ember-lts-3.28 + embroider-optimized',
-        npm: {
-          devDependencies: {
-            '@embroider/core': embroiderVersion,
-            '@embroider/webpack': embroiderVersion,
-            '@embroider/compat': embroiderVersion,
-            'ember-source': '~3.28.0',
-          },
-        },
-      }),
-      embroiderOptimized({
-        name: 'ember-lts-4.4 + embroider-optimized',
-        npm: {
-          devDependencies: {
-            '@embroider/core': embroiderVersion,
-            '@embroider/webpack': embroiderVersion,
-            '@embroider/compat': embroiderVersion,
-            'ember-source': '~4.4.0',
-          },
-        },
-      }),
+      embroiderSafe(),
+      embroiderOptimized(),
     ],
   };
 };
