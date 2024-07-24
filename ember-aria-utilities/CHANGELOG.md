@@ -1,3 +1,21 @@
+# [3.0.0](https://github.com/CrowdStrike/ember-aria/compare/v2.3.1...v3.0.0) (2024-07-24)
+
+
+### chore
+
+* Drop support for Ember < 4.8 ([d8a24ac](https://github.com/CrowdStrike/ember-aria/commit/d8a24ac50039d26c72a82595001587a3dbfc6630))
+
+
+### Features
+
+* Update @ember/test-helpers dependency to v3 ([627bb28](https://github.com/CrowdStrike/ember-aria/commit/627bb28ba04eec76a1b124293e31b0dfc6949c67))
+
+
+### BREAKING CHANGES
+
+* Drop support for Ember < 4.8
+* Update @ember/test-helpers dependency to v3
+
 ## [2.3.1](https://github.com/CrowdStrike/ember-aria/compare/v2.3.0...v2.3.1) (2022-12-06)
 
 
