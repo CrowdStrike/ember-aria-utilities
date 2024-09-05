@@ -6,7 +6,7 @@ import templateOnly from '@ember/component/template-only';
 import { guidFor } from '@ember/object/internals';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { Resource } from 'ember-resources/core';
+import { Resource } from 'ember-modify-based-class-resource';
 
 interface Signature {
   Positional: [unknown];

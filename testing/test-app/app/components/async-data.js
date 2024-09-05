@@ -5,7 +5,7 @@ import Component from '@glimmer/component';
 import { setComponentTemplate } from '@ember/component';
 import { hbs } from 'ember-cli-htmlbars';
 
-import { trackedFunction } from 'ember-resources/util/function';
+import { trackedFunction } from 'reactiveweb/function';
 
 export default class AsyncData extends Component {
   request = trackedFunction(this, async () => {
